@@ -26,10 +26,13 @@ Reimplementation of the "Modeling how different user groups perceive webpage aes
 
 [`full_gradient_descent.py`](full_gradient_descent.py) holds a script which expects a file `0.png` (a screenshot of a User Interface) to be present and it will run 50 optimization steps on it, saving an image in each step.
 
-It should be run with [accelerate]():
+It should be run with [accelerate](https://huggingface.co/docs/accelerate/index):
 ```bash
 accelerate launch full_gradient_descent.py
 ```
+
+> [!WARNING]  
+> As the autograd graphs for PyTorch get extremely large, a GPU with at least 48Gi of VRAM is required. However, because the script is using accelerate, this can easily be split up to multiple GPUs
 
 ## Current results
 Currently an example looks like this:
@@ -37,4 +40,4 @@ Step 0             |  Step 50
 :-------------------------:|:-------------------------:
 ![](images/output_0.png)  |  ![](images/output_49.png)
 
-As you can see, this is till in the very early stages, but it is already clearly visible that the pipeline is able to modify the UI in some meaningful way.
+As you can see, this is still in the very early stages, but it is already clearly visible that the pipeline is able to modify the UI in some meaningful way.
