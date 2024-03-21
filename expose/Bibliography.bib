@@ -1,0 +1,840 @@
+
+
+@article{Jiang_Sun_Zhu_Lou_Zhang_2022,
+  title        = {Coarse-to-Fine Generative Modeling for Graphic Layouts},
+  volume       = {36},
+  url          = {https://ojs.aaai.org/index.php/AAAI/article/view/19994},
+  doi          = {10.1609/aaai.v36i1.19994},
+  abstractnote = {Even though graphic layout generation has attracted growing attention recently, it is still challenging to synthesis realistic and diverse layouts, due to the complicated element relationships and varied element arrangements. In this work, we seek to improve the performance of layout generation by incorporating the concept of regions, which consist of a smaller number of elements and appears like a simple layout, into the generation process. Specifically, we leverage Variational Autoencoder (VAE) as the overall architecture and decompose the decoding process into two stages. The first stage predicts representations for regions, and the second stage fills in the detailed position for each element within the region based on the predicted region representation. Compared to prior studies that merely abstract the layout into a list of elements and generate all the element positions in one go, our approach has at least two advantages. First, by the two-stage decoding, our approach decouples the complex layout generation task into several simple layout generation tasks, which reduces the problem difficulty. Second, the predicted regions can help the model roughly know what the graphic layout looks like and serve as global context to improve the generation of detailed element positions. Qualitative and quantitative experiments demonstrate that our approach significantly outperforms the existing methods, especially on the complex graphic layouts.},
+  number       = {1},
+  journal      = {Proceedings of the AAAI Conference on Artificial Intelligence},
+  author       = {Jiang, Zhaoyun and Sun, Shizhao and Zhu, Jihua and Lou, Jian-Guang and Zhang, Dongmei},
+  year         = {2022},
+  month        = {Jun.},
+  pages        = {1096-1103}
+}
+@inproceedings{xie2021canvasemb,
+author = {Xie, Yuxi and Huang, Danqing and Wang, Jinpeng and Lin, Chin-Yew},
+title = {CanvasEmb: Learning Layout Representation with Large-scale Pre-training for Graphic Design},
+booktitle = {Proceedings of the 29th ACM International Conference on Multimedia},
+year = {2021},
+month = {October},
+abstract = {Layout representation, which models visual elements and their inter-relations in a canvas, plays a crucial role in graphic design intelligence. With a large variety of layout designs and the unique characteristic of layouts that visual elements are defined as a list of categorical (e.g., type) and numerical (e.g., position and size) properties, it is challenging to learn general and compact representations with limited data. Inspired by the recent success of self-supervised pre-training techniques in various natural language processing tasks, in this paper, we propose CanvasEmb (Canvas Embedding), which pre-trains deep representations from unlabeled graphic designs by jointly conditioning on all the context elements in a canvas, with a multi-dimensional feature encoder and a multi-task learning objective. The pre-trained CanvasEmb model can be fine-tuned with just one additional output layer and with a small size of training data to create models for a wide range of downstream tasks. We verify our approach with presentation slides data. We construct a large-scale dataset with more than one million slides and propose two layout understanding tasks with human-labeled sets, namely element role labeling and image captioning. Evaluation results on these two tasks show that our model with fine-tuning achieves state-of-the-art performance. Furthermore, we conduct a deep analysis aiming to understand the modeling mechanism of CanvasEmb and demonstrate its great potential with two extended applications: layout auto completion and layout retrieval.},
+url = {https://www.microsoft.com/en-us/research/publication/canvasemb-learning-layout-representation-with-large-scale-pre-training-for-graphic-design/},
+pages = {4100-4108},
+}
+@misc{lee2020neural,
+      title={Neural Design Network: Graphic Layout Generation with Constraints}, 
+      author={Hsin-Ying Lee and Lu Jiang and Irfan Essa and Phuong B Le and Haifeng Gong and Ming-Hsuan Yang and Weilong Yang},
+      year={2020},
+      eprint={1912.09421},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+@misc{patil2020read,
+      title={READ: Recursive Autoencoders for Document Layout Generation}, 
+      author={Akshay Gadi Patil and Omri Ben-Eliezer and Or Perel and Hadar Averbuch-Elor},
+      year={2020},
+      eprint={1909.00302},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+@misc{arroyo2021variational,
+      title={Variational Transformer Networks for Layout Generation}, 
+      author={Diego Martin Arroyo and Janis Postels and Federico Tombari},
+      year={2021},
+      eprint={2104.02416},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+@article{effects_of_website_designs,
+  author   = {Douneva, Maria and Jaron, Rafael and Thielsch, Meinald T.},
+  title    = {{Effects of Different Website Designs on First Impressions, Aesthetic Judgements and Memory Performance after Short Presentation}},
+  journal  = {Interacting with Computers},
+  volume   = {28},
+  number   = {4},
+  pages    = {552-567},
+  year     = {2016},
+  month    = {06},
+  abstract = {{The current study investigates how different types of company website designs influence first impressions, aesthetic evaluations and memory performance. We implemented an online study with a between-subjects design to examine differences between three design categories identified by ten experts in a pretest: strong colours of one colour family (SCOFA), large pictures (LAPIC) and same amount of pictures and text (SAPAT). The data of 458 participants (52.2\\% female) reveal that (i) after an exposure time of 5 s, response times for website-related attributes differ between the categories, (ii) LAPIC and SAPAT are perceived as more aesthetic than SCOFA and (iii) memory performance is best on SAPAT sites. These results underline the importance of first impressions of a site's appearance and provide practical guidance for web designers by showing what users associate with certain designs, which designs they prefer, and which sites are the most memorable.}},
+  issn     = {0953-5438},
+  doi      = {10.1093/iwc/iwv033},
+  url      = {https://doi.org/10.1093/iwc/iwv033},
+  eprint   = {https://academic.oup.com/iwc/article-pdf/28/4/552/6773012/iwv033.pdf}
+}
+@misc{hui2023unifying,
+  title         = {Unifying Layout Generation with a Decoupled Diffusion Model},
+  author        = {Mude Hui and Zhizheng Zhang and Xiaoyi Zhang and Wenxuan Xie and Yuwang Wang and Yan Lu},
+  year          = {2023},
+  eprint        = {2303.05049},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CV}
+}
+@misc{kong2022blt,
+  title         = {BLT: Bidirectional Layout Transformer for Controllable Layout Generation},
+  author        = {Xiang Kong and Lu Jiang and Huiwen Chang and Han Zhang and Yuan Hao and Haifeng Gong and Irfan Essa},
+  year          = {2022},
+  eprint        = {2112.05112},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CV}
+}
+@misc{gupta2021layouttransformer,
+  title         = {LayoutTransformer: Layout Generation and Completion with Self-attention},
+  author        = {Kamal Gupta and Justin Lazarow and Alessandro Achille and Larry Davis and Vijay Mahadevan and Abhinav Shrivastava},
+  year          = {2021},
+  eprint        = {2006.14615},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CV}
+}
+@misc{rombach2021highresolution,
+  title         = {High-Resolution Image Synthesis with Latent Diffusion Models},
+  author        = {Robin Rombach and Andreas Blattmann and Dominik Lorenz and Patrick Esser and Björn Ommer},
+  year          = {2021},
+  eprint        = {2112.10752},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CV}
+}
+
+@misc{deckers2023manipulating,
+  title         = {Manipulating Embeddings of Stable Diffusion Prompts},
+  author        = {Niklas Deckers and Julia Peters and Martin Potthast},
+  year          = {2023},
+  eprint        = {2308.12059},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CV}
+}
+@article{Leiva2023,
+  author   = {Leiva, Luis A.
+              and Shiripour, Morteza
+              and Oulasvirta, Antti},
+  title    = {Modeling how different user groups perceive webpage aesthetics},
+  journal  = {Universal Access in the Information Society},
+  year     = {2023},
+  month    = {Nov},
+  day      = {01},
+  volume   = {22},
+  number   = {4},
+  pages    = {1417-1424},
+  abstract = {Aesthetics is a central consideration in user interface design. It is known to affect end-user behavior and perception, in particular the first impression of graphical user interfaces. However, what users perceive as pleasant or good design is highly subjective. We contribute a computational model that estimates the visual appeal of a given webpage for several common cohorts, or user groups, including gender, age, and education level. Our model, a convolutional neural network trained on 418 webpage screenshots having 771k aesthetic scores (in a 1--9 Likert scale) from 32k users, achieves high accuracy and is always less than 1 point off from ground-truth ratings. Designers can use our model to anticipate how people would rate their webpage, offer personalized designs according to the visual preferences of their users, and support rapid evaluations of webpage design prototypes for specific cohorts.},
+  issn     = {1615-5297},
+  doi      = {10.1007/s10209-022-00910-x},
+  url      = {https://doi.org/10.1007/s10209-022-00910-x}
+}
+
+@misc{zhang2023layoutdiffusion,
+  title         = {LayoutDiffusion: Improving Graphic Layout Generation by Discrete Diffusion Probabilistic Models},
+  author        = {Junyi Zhang and Jiaqi Guo and Shizhao Sun and Jian-Guang Lou and Dongmei Zhang},
+  year          = {2023},
+  eprint        = {2303.11589},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CV}
+}
+
+@misc{chen2024aligned,
+  title         = {Towards Aligned Layout Generation via Diffusion Model with Aesthetic Constraints},
+  author        = {Jian Chen and Ruiyi Zhang and Yufan Zhou and Changyou Chen},
+  year          = {2024},
+  eprint        = {2402.04754},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CV}
+}
+
+@inproceedings{Li_2021,
+  series     = {CHI ’21},
+  title      = {Screen2Vec: Semantic Embedding of GUI Screens and GUI Components},
+  url        = {http://dx.doi.org/10.1145/3411764.3445049},
+  doi        = {10.1145/3411764.3445049},
+  booktitle  = {Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems},
+  publisher  = {ACM},
+  author     = {Li, Toby Jia-Jun and Popowski, Lindsay and Mitchell, Tom and Myers, Brad A},
+  year       = {2021},
+  month      = may,
+  collection = {CHI ’21}
+}
+
+@misc{schuhmann2022laion5b,
+  title         = {LAION-5B: An open large-scale dataset for training next generation image-text models},
+  author        = {Christoph Schuhmann and Romain Beaumont and Richard Vencu and Cade Gordon and Ross Wightman and Mehdi Cherti and Theo Coombes and Aarush Katta and Clayton Mullis and Mitchell Wortsman and Patrick Schramowski and Srivatsa Kundurthy and Katherine Crowson and Ludwig Schmidt and Robert Kaczmarczyk and Jenia Jitsev},
+  year          = {2022},
+  eprint        = {2210.08402},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CV}
+}
+@inproceedings{li2022blip,
+  title     = {BLIP: Bootstrapping Language-Image Pre-training for Unified Vision-Language Understanding and Generation},
+  author    = {Junnan Li and Dongxu Li and Caiming Xiong and Steven Hoi},
+  year      = {2022},
+  booktitle = {ICML}
+}
+@inproceedings{10.1145/3126594.3126651,
+  author    = {Deka, Biplab and Huang, Zifeng and Franzen, Chad and Hibschman, Joshua and Afergan, Daniel and Li, Yang and Nichols, Jeffrey and Kumar, Ranjitha},
+  title     = {Rico: A Mobile App Dataset for Building Data-Driven Design Applications},
+  year      = {2017},
+  isbn      = {9781450349819},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/3126594.3126651},
+  doi       = {10.1145/3126594.3126651},
+  abstract  = {Data-driven models help mobile app designers understand best practices and trends, and can be used to make predictions about design performance and support the creation of adaptive UIs. This paper presents Rico, the largest repository of mobile app designs to date, created to support five classes of data-driven applications: design search, UI layout generation, UI code generation, user interaction modeling, and user perception prediction. To create Rico, we built a system that combines crowdsourcing and automation to scalably mine design and interaction data from Android apps at runtime. The Rico dataset contains design data from more than 9.7k Android apps spanning 27 categories. It exposes visual, textual, structural, and interactive design properties of more than 72k unique UI screens. To demonstrate the kinds of applications that Rico enables, we present results from training an autoencoder for UI layout similarity, which supports query- by-example search over UIs.},
+  booktitle = {Proceedings of the 30th Annual ACM Symposium on User Interface Software and Technology},
+  pages     = {845–854},
+  numpages  = {10},
+  keywords  = {mobile app design, design search, design mining, app datasets},
+  location  = {Qu\'{e}bec City, QC, Canada},
+  series    = {UIST '17}
+}
+% #############OLD#############
+@article{finstad_usability_2010,
+  title    = {The {Usability} {Metric} for {User} {Experience}},
+  volume   = {22},
+  doi      = {10.1016/j.intcom.2010.04.004},
+  abstract = {The Usability Metric for User Experience (UMUX) is a four-item Likert scale used for the subjective assessment of an application’s
+              perceived usability. It is designed to provide results similar to those obtained with the 10-item System Usability Scale,
+              and is organized around the ISO 9241–11 definition of usability. A pilot version was assembled from candidate items, which
+              was then tested alongside the System Usability Scale during usability testing. It was shown that the two scales correlate
+              well, are reliable, and both align on one underlying usability factor. In addition, the Usability Metric for User Experience
+              is compact enough to serve as a usability module in a broader user experience metric.},
+  journal  = {Interacting with Computers},
+  author   = {Finstad, Kraig},
+  month    = sep,
+  year     = {2010},
+  pages    = {323--327}
+}
+
+
+@misc{national_highway_traffic_safety_administration_visual-manual_2014,
+  title   = {Visual-{Manual} {NHTSA} {Driver} {Distraction} {Guidelines} for {In}-{Vehicle} {Electronic} {Devices}},
+  url     = {https://www.govinfo.gov/content/pkg/FR-2014-09-16/pdf/2014-21991.pdf},
+  urldate = {2021-12-20},
+  author  = {National Highway Traffic Safety Administration},
+  year    = {2014}
+}
+
+
+@article{iso-25010_2011,
+  added-at  = {2019-09-18T23:11:14.000+0200},
+  author    = {{ISO}/{IEC}},
+  timestamp = {2019-09-18T23:11:14.000+0200},
+  title     = {{Systems} and software engineering — {Systems} and software {Quality} {Requirements} and {Evaluation} ({SQuaRE}) — {System} and software quality models},
+  year      = 2011,
+  journal   = {ISO/IEC 25010:2011}
+}
+
+@inproceedings{mavin_towards_2019,
+  title     = {Towards an {Ontology} of {Requirements} {Engineering} approaches},
+  doi       = {10.1109/RE.2019.00080},
+  abstract  = {Requirements are a key factor in determining the success or failure of the system development process. Requirements engineering is a creative problem-solving process whose primary purpose is to enable researchers and practitioners to apply appropriate theories, models, techniques and tools to understand and support the requirements processes more effectively. However, there is a multitude of ways to conduct the requirements engineering process and the quality of the requirements can be greatly influenced by the approaches employed. While consensus exists that no one approach works in all situations, how do practitioners and researchers select the most relevant and appropriate approach(es)? In order to understand this, we argue that a community-based effort is required to organise the plethora of requirements engineering approaches into an ontology. Such a structure would provide an opportunity to identify gaps and to improve the interfaces between approaches. Crowdsourcing the development and validation of such an ontology would facilitate its application across different system types and application domains. Keywords: Requirements Engineering, Community-based Requirements Engineering, Crowdsourcing, Ontology, Methods, Tools, Techniques, Approaches.},
+  language  = {en},
+  booktitle = {Towards an {Ontology} of {Requirements} {Engineering} {Approaches}},
+  author    = {Mavin, Alistair and Mavin, Sabine and Penzenstadler, Birgit and Venters, Colin C.},
+  year      = {2019},
+  pages     = {514--515}
+}
+
+@article{iso_29148,
+  journal = {ISO/IEC/IEEE 29148:2018(E)},
+  author  = {{ISO}/{IEC}/{IEEE}},
+  title   = {{International} {Standard} - {Systems} and software engineering – {Life} cycle processes – {Requirements} engineering},
+  year    = {2018},
+  volume  = {},
+  number  = {},
+  key     = {ISO 29148}
+}
+
+@article{mohd_critical_2011,
+  title      = {Critical success factors for software projects: {A} comparative study},
+  volume     = {6},
+  issn       = {1992-2248},
+  shorttitle = {Critical success factors for software projects},
+  abstract   = {Although there have been studies completed on the critical success factors of software projects, these studies all have been specific to one particular country. There has been no comprehensive study reporting on different project sizes in various domains and in multiple countries. We present our extensive literature survey of critical success factors that impact software projects. Forty-three articles from the years 1990 to 2010 were found to be significant contributions that could be analysed in order to develop a list of critical factors that specifically affect the success of software projects. The method of content analysis and frequency analysis was adopted. Twenty-six critical success factors were found to be related to software project success. We suggest that organisation or project manager is attentive to control the top five critical factors to drive towards project success since the percentage of frequency of occurrences for each is more than 50\%. Also, it appears that non-technical factors (94\%) dominated over technical factors (6\%). In a result unique to our study compared with previous one, we found that the factors of clear and frozen requirements, realistic estimation of the schedule and budget, along with a competent project manager are the five most critical success factors of software projects.},
+  language   = {en},
+  number     = {10},
+  urldate    = {2020-07-03},
+  journal    = {Scientific Research and Essays},
+  author     = {Mohd, Hairul Nizam Nasir and Shamsul, Sahibuddin},
+  year       = {2011},
+  pages      = {pp. 2174--2186}
+}
+
+@article{venkatesh_user_2003,
+  title      = {User {Acceptance} of {Information} {Technology}: {Toward} a {Unified} {View}},
+  volume     = {27},
+  issn       = {0276-7783},
+  shorttitle = {User {Acceptance} of {Information} {Technology}},
+  url        = {https://www.jstor.org/stable/30036540},
+  doi        = {10.2307/30036540},
+  abstract   = {Information technology (IT) acceptance research has yielded many competing models, each with different sets of acceptance determinants. In this paper, we (1) review user acceptance literature and discuss eight prominent models, (2) empirically compare the eight models and their extensions, (3) formulate a unified model that integrates elements across the eight models, and (4) empirically validate the unified model. The eight models reviewed are the theory of reasoned action, the technology acceptance model, the motivational model, the theory of planned behavior, a model combining the technology acceptance model and the theory of planned behavior, the model of PC utilization, the innovation diffusion theory, and the social cognitive theory. Using data from four organizations over a six-month period with three points of measurement, the eight models explained between 17 percent and 53 percent of the variance in user intentions to use information technology. Next, a unified model, called the Unified Theory of Acceptance and Use of Technology (UTAUT), was formulated, with four core determinants of intention and usage, and up to four moderators of key relationships. UTAUT was then tested using the original data and found to outperform the eight individual models (adjusted R of 69 percent). UTAUT was then confirmed with data from two new organizations with similar results (adjusted R of 70 percent). UTAUT thus provides a useful tool for managers needing to assess the likelihood of success for new technology introductions and helps them understand the drivers of acceptance in order to proactively design interventions (including training, marketing, etc.) targeted at populations of users that may be less inclined to adopt and use new systems. The paper also makes several recommendations for future research including developing a deeper understanding of the dynamic influences studied here, refining measurement of the core constructs used in UTAUT, and understanding the organizational outcomes associated with new technology use.},
+  number     = {3},
+  urldate    = {2021-12-16},
+  journal    = {MIS Quarterly},
+  author     = {Venkatesh, Viswanath and Morris, Michael G. and Davis, Gordon B. and Davis, Fred D.},
+  year       = {2003},
+  pages      = {425--478}
+}
+
+@article{van_der_laan_simple_1997,
+  title    = {A simple procedure for the assessment of acceptance of advanced transport telematics},
+  volume   = {5},
+  issn     = {0968-090X},
+  url      = {https://www.sciencedirect.com/science/article/pii/S0968090X96000253},
+  doi      = {10.1016/S0968-090X(96)00025-3},
+  abstract = {There is no standard way of measuring driver acceptance of new technology. A review of the literature shows that there are almost as many methods of assessment of acceptance as there are acceptance studies. The tool for studying acceptance of new technological equipment that is presented here has a major advantage compared with many other studies in that esoteric knowledge of scaling techniques is not required. The technique is simple and consists of nine 5-point rating-scale items. These items load on two scales, a scale denoting the usefulness of the system, and a scale designating satisfaction. The technique has been applied in six different studies in different test environments and analyses performed over these studies show that it is a reliable instrument for the assessment of acceptance of new technology. The technique was sensitive to differences in opinion to specific aspects of in-vehicle systems, as well as to differences in opinion between driver groups. In a concluding section explicit recommendations for use of the scale are given.},
+  language = {en},
+  number   = {1},
+  urldate  = {2021-12-16},
+  journal  = {Transportation Research Part C: Emerging Technologies},
+  author   = {Van Der Laan, Jinke D. and Heino, Adriaan and De Waard, Dick},
+  month    = feb,
+  year     = {1997},
+  pages    = {1--10}
+}
+
+@article{lewis_psychometric_2002,
+  title    = {Psychometric {Evaluation} of the {PSSUQ} {Using} {Data} from {Five} {Years} of {Usability} {Studies}},
+  volume   = {14},
+  issn     = {1044-7318},
+  url      = {https://doi.org/10.1080/10447318.2002.9669130},
+  doi      = {10.1080/10447318.2002.9669130},
+  abstract = {Factor analysis of Post Study System Usability Questionnaire (PSSUQ) data from 5 years of usability studies (with a heavy emphasis on speech dictation systems) indicated a 3-factor structure consistent with that initially described 10 years ago: factors for System Usefulness, Information Quality, and Interface Quality. Estimated reliabilities (ranging from .83-.96) were also consistent with earlier estimates. Analyses of variance indicated that variables such as the study, developer, stage of development, type of product, and type of evaluation significantly affected PSSUQ scores. Other variables, such as gender and completeness of responses to the questionnaire, did not. Norms derived from this data correlated strongly with norms derived from the original PSSUQ data. The similarity of psychometric properties between the original and this PSSUQ data, despite the passage of time and differences in the types of systems studied, provide evidence of significant generalizability for the questionnaire, supporting its use by practitioners for measuring participant satisfaction with the usability of tested systems.},
+  number   = {3-4},
+  urldate  = {2021-12-16},
+  journal  = {International Journal of Human–Computer Interaction},
+  author   = {Lewis, James R.},
+  month    = sep,
+  year     = {2002},
+  pages    = {463--488}
+}
+
+@incollection{brooke_sus_1996,
+  address    = {London, UK},
+  title      = {{SUS}: {A} '{Quick} and {Dirty}' {Usability} {Scale}},
+  isbn       = {978-0-429-15701-1},
+  shorttitle = {{SUS}},
+  abstract   = {Usability is not a quality that exists in any real or absolute sense. Perhaps it can be 
+                best summed up as being a general quality of the appropriateness to a purpose of 
+                any particular artefact. This notion is neatly summed up by Terry Pratchett in his 
+                novel Moving Pictures:In just the same way, the usability of any tool or system has to be viewed in terms 
+                of the context in which it is used, and its appropriateness to that context. With 
+                particular reference to information systems, this view of usability is reflected in the 
+                current draft international standard ISO 9241-11 and in the European Community 
+                ESPRIT project MUSiC (Measuring Usability of Systems in Context) (e.g. Bevan 
+                et al., 1991). In general, it is impossible to specify the usability of a system (i.e. its 
+                fitness for purpose) without first defining who are the intended users of the system, 
+                the tasks those users will perform with it, and the characteristics of the physical, 
+                organizational and social environment in which it will be used.},
+  booktitle  = {Usability {Evaluation} in {Industry}},
+  publisher  = {Taylor \& Francis},
+  author     = {Brooke, john},
+  year       = {1996},
+  pages      = {189--194}
+}
+
+@article{saura_user-generated_2021,
+  title      = {From user-generated data to data-driven innovation: {A} research agenda to understand user privacy in digital markets},
+  issn       = {0268-4012},
+  shorttitle = {From user-generated data to data-driven innovation},
+  url        = {https://www.sciencedirect.com/science/article/pii/S0268401221000244},
+  doi        = {10.1016/j.ijinfomgt.2021.102331},
+  abstract   = {In recent years, strategies focused on data-driven innovation (DDI) have led to the emergence and development of new products and business models in the digital market. However, these advances have given rise to the development of sophisticated strategies for data management, predicting user behavior, or analyzing their actions. Accordingly, the large-scale analysis of user-generated data (UGD) has led to the emergence of user privacy concerns about how companies manage user data. Although there are some studies on data security, privacy protection, and data-driven strategies, a systematic review on the subject that would focus on both UGD and DDI as main concepts is lacking. Therefore, the present study aims to provide a comprehensive understanding of the main challenges related to user privacy that affect DDI. The methodology used in the present study unfolds in the following three phases; (i) a systematic literature review (SLR); (ii) in-depth interviews framed in the perspectives of UGD and DDI on user privacy concerns, and finally, (iii) topic-modeling using a Latent Dirichlet allocation (LDA) model to extract insights related to the object of study. Based on the results, we identify 14 topics related to the study of DDI and UGD strategies. In addition, 14 future research questions and 7 research propositions are presented that should be consider for the study of UGD, DDI and user privacy in digital markets. The paper concludes with an important discussion regarding the role of user privacy in DDI in digital markets.},
+  language   = {en},
+  urldate    = {2021-06-09},
+  journal    = {International Journal of Information Management},
+  author     = {Saura, Jose Ramon and Ribeiro-Soriano, Domingo and Palacios-Marqués, Daniel},
+  month      = feb,
+  year       = {2021},
+  keywords   = {Data-driven innovation, Privacy concerns, User-generated data, Users’ privacy},
+  pages      = {102331}
+}
+
+@article{saura_using_2021,
+  title      = {Using {Data} {Sciences} in {Digital} {Marketing}: {Framework}, methods, and performance metrics},
+  volume     = {6},
+  issn       = {2444-569X},
+  shorttitle = {Using {Data} {Sciences} in {Digital} {Marketing}},
+  url        = {https://www.sciencedirect.com/science/article/pii/S2444569X20300329},
+  doi        = {10.1016/j.jik.2020.08.001},
+  abstract   = {In the last decade, the use of Data Sciences, which facilitate decision-making and extraction of actionable insights and knowledge from large datasets in the digital marketing environment, has remarkably increased. However, despite these advances, relevant evidence on the measures to improve the management of Data Sciences in digital marketing remains scarce. To bridge this gap in the literature, the present study aims to review (i) methods of analysis, (ii) uses, and (iii) performance metrics based on Data Sciences as used in digital marketing techniques and strategies. To this end, a comprehensive literature review of major scientific contributions made so far in this research area is undertaken. The results present a holistic overview of the main applications of Data Sciences to digital marketing and generate insights related to the creation of innovative Data Mining and knowledge discovery techniques. Important theoretical implications are discussed, and a list of topics is offered for further research in this field. The review concludes with formulating recommendations on the development of digital marketing strategies for businesses, marketers, and non-technical researchers and with an outline of directions of further research on innovative Data Mining and knowledge discovery applications.},
+  language   = {en},
+  number     = {2},
+  urldate    = {2021-12-16},
+  journal    = {Journal of Innovation \& Knowledge},
+  author     = {Saura, Jose Ramon},
+  month      = apr,
+  year       = {2021},
+  keywords   = {Data Mining, Data Sciences, Digital Marketing, Knowledge discovery, Literature review},
+  pages      = {92--102}
+}
+
+@inproceedings{ghimire_accelerating_2020,
+  address   = {Palladam, India},
+  title     = {Accelerating {Business} {Growth} with {Big} {Data} and {Artificial} {Intelligence}},
+  doi       = {10.1109/I-SMAC49090.2020.9243318},
+  abstract  = {Artificial Intelligence (AI) is considered to be the fourth industrial revolution. Artificial Intelligence with the help of big data has transformed all industries around the world Artificial intelligence refers to the simulation of human or animal intelligence in computational systems so that they are programmed to think like Intelligent beings and mimic the actions of intelligent entities. Computational systems which have programmed intelligence can solve different real-world problems far more accurately and efficiently than computational systems that are deterministic and hardcoded. Since many problems in business and business analytics cannot be solved by deterministic systems, AI plays a major role in tackling problems in the business world Machine learning and deep learning which are subsets of the field of AI is widely used to solve and optimize many problems in business such as marketing, credit card fraud detection, algorithmic trading, customer service, portfolio management, product recommendation according to the needs of customers, insurance underwriting. AI and big data have revolutionized the business world and this paper discusses some AI and big data technologies that are currently being used to accelerate business growth.},
+  booktitle = {2020 {Fourth} {International} {Conference} on {I}-{SMAC} ({IoT} in {Social}, {Mobile}, {Analytics} and {Cloud}) ({I}-{SMAC})},
+  publisher = {IEEE},
+  author    = {Ghimire, Awishkar and Thapa, Surendrabikram and Jha, Avinash Kumar and Adhikari, Surabhi and Kumar, Ankit},
+  month     = oct,
+  year      = {2020},
+  keywords  = {Acceleration, Artificial intelligence, Artificial Intelligence, Big Data, Business, Business Analytics, Computational efficiency, Decision Making, Machine learning algorithms, Portfolios},
+  pages     = {441--448}
+}
+
+
+@inproceedings{han_methodology_2018,
+  address   = {Singapore},
+  title     = {A {Methodology} of {UX} {Design} of {Touch}-based {Automotive} {Headunit} by {Minizing} {Driver}'s {Distraction}},
+  doi       = {10.1109/ICITE.2018.8492566},
+  abstract  = {High expectations are given to cars with focus on traditional driving while incorporating a variety of features. The inclusion of high specification features such as autonomous driving has enabled the vehicle to have a variety of functions in addition to driving. It is important to provide the driver with easy control of various convenience features such as navigation and air conditioners. It is also important to manipulate in-vehicle information system (IVIS) from the driver's point of view. The objective of this study was to determine effects of traditional button-operated controls on driving under the influence of touched control and touch-type controls using a variety of criteria to derive requirements that must be satisfied to change touched control.},
+  booktitle = {2018 3rd {IEEE} {International} {Conference} on {Intelligent} {Transportation} {Engineering} ({ICITE})},
+  publisher = {IEEE},
+  author    = {Han, SangHyun and Jeong, Jinhuk and Seo, SukHyun},
+  month     = sep,
+  year      = {2018},
+  keywords  = {Automobiles, Color, Head, HMI, Infotaiment, IVIS (key words), Navigation, Shape, Time measurement, Touch Control},
+  pages     = {276--280}
+}
+
+@inproceedings{vo_investigating_2020,
+  address   = {Virtual Event DC USA},
+  title     = {Investigating the effect of tactile input and output locations for drivers’ hands on in-car tasks performance},
+  isbn      = {978-1-4503-8065-2},
+  url       = {https://dl.acm.org/doi/10.1145/3409120.3410656},
+  doi       = {10.1145/3409120.3410656},
+  abstract  = {This paper reports a study investigating the effects of tactile input and output from the steering wheel and the centre console on non-driving task performance. While driving, participants were asked to perform list selection tasks using tactile switches and to experience tactile feedback on either the non-dominant, dominant or both hands as they were browsing the list. Our results show the average duration for selecting an item is 30\% shorter when interacting with the steering wheel. They also show a 20\% increase in performance when tactile feedback is provided. Our findings reveal that input prevails over output location when designing interaction for drivers. However, tactile feedback on the steering wheel is beneficial when provided at the same location as the input or to both hands. The results will help designers understand the trade-offs of using different interaction locations in the car.},
+  language  = {en},
+  urldate   = {2021-12-13},
+  booktitle = {12th {International} {Conference} on {Automotive} {User} {Interfaces} and {Interactive} {Vehicular} {Applications}},
+  publisher = {ACM},
+  author    = {Vo, Dong-Bach and Brewster, Stephen},
+  month     = sep,
+  year      = {2020},
+  pages     = {1--8}
+}
+
+@inproceedings{nielsen_usability_1994,
+  address   = {New York, NY, USA},
+  series    = {{CHI} '94},
+  title     = {Usability inspection methods},
+  isbn      = {978-0-89791-651-6},
+  url       = {https://doi.org/10.1145/259963.260531},
+  doi       = {10.1145/259963.260531},
+  urldate   = {2021-12-09},
+  booktitle = {Conference {Companion} on {Human} {Factors} in {Computing} {Systems}},
+  publisher = {Association for Computing Machinery},
+  author    = {Nielsen, Jakob},
+  month     = apr,
+  year      = {1994},
+  pages     = {413--414}
+}
+
+
+@article{tan_web_2009,
+  title      = {Web evaluation: {Heuristic} evaluation vs. user testing},
+  volume     = {39},
+  issn       = {01698141},
+  shorttitle = {Web evaluation},
+  url        = {https://linkinghub.elsevier.com/retrieve/pii/S016981410800053X},
+  doi        = {10.1016/j.ergon.2008.02.012},
+  abstract   = {It is very important that designers recognize the beneﬁts and limitations of different usability inspection methods. This is because the quality of the usability evaluation is dependent on the method used. Two of the most popular usability evaluation techniques are user testing and heuristic analysis. The main objective of this study was to compare the efﬁciency and effectiveness between user testing and heuristic analysis in evaluating four different commercial web sites. The results showed that both user testing and heuristic analysis addressed different usability problems. Analysis by severity of problems found and diminishing return analysis model on the relationship between the number of new problems discovered with users and evaluators used showed that both methods are equally efﬁcient and effective in addressing different categories of usability problems. These signiﬁcant differences found between these two methods suggested that the two methods are complimentary and should not be competing. In order for better evaluation results, both user testing and heuristic analysis are still needed.},
+  language   = {en},
+  number     = {4},
+  urldate    = {2021-12-09},
+  journal    = {International Journal of Industrial Ergonomics},
+  author     = {Tan, Wei-siong and Liu, Dahai and Bishu, Ram},
+  month      = jul,
+  year       = {2009},
+  pages      = {621--627}
+}
+
+
+@article{albers_usability_2020,
+  title    = {Usability {Evaluation} - {Advances} in {Experimental} {Design} in the {Context} of {Automated} {Driving} {Human}-{Machine} {Interfaces}},
+  volume   = {11},
+  doi      = {10.3390/info11050240},
+  abstract = {The projected introduction of conditional automated driving systems to the market has sparked multifaceted research on human-machine interfaces (HMIs) for such systems. By moderating the roles of the human driver and the driving automation system, the HMI is indispensable in avoiding side effects of automation such as mode confusion, misuse, and disuse. In addition to safety aspects, the usability of HMIs plays a vital role in improving the trust and acceptance of the automated driving system. This paper aggregates common research methods and findings based on an extensive literature review. Empirical studies, frameworks, and review articles are included. Findings and conclusions are presented with a focus on study characteristics such as test cases, dependent variables, testing environments, or participant samples. These methods and findings are discussed critically, taking into consideration requirements for usability assessments of HMIs in the context of conditional automated driving. The paper concludes with a derivation of recommended study characteristics framing best practice advice for the design of experiments. The advised selection of scenarios and metrics will be applied in a future validation study series comprising a driving simulator experiment and three real driving experiments on test tracks in Germany, the USA, and Japan.},
+  number   = {5},
+  journal  = {Information},
+  author   = {Albers, Deike and Radlmayr, Jonas and Loew, Alexandra and Hergeth, Sebastian and Naujoks, Frederik and Keinath, Andreas and Bengler, Klaus},
+  month    = apr,
+  year     = {2020},
+  pages    = {240}
+}
+
+@inproceedings{matejka_patina_2013,
+  address    = {Paris France},
+  title      = {Patina: dynamic heatmaps for visualizing application usage},
+  isbn       = {978-1-4503-1899-0},
+  shorttitle = {Patina},
+  url        = {https://dl.acm.org/doi/10.1145/2470654.2466442},
+  doi        = {10.1145/2470654.2466442},
+  language   = {en},
+  urldate    = {2021-11-10},
+  booktitle  = {Proceedings of the {SIGCHI} {Conference} on {Human} {Factors} in {Computing} {Systems}},
+  publisher  = {ACM},
+  author     = {Matejka, Justin and Grossman, Tovi and Fitzmaurice, George},
+  month      = apr,
+  year       = {2013},
+  pages      = {3227--3236}
+}
+
+@inproceedings{deka_zipt_2017,
+  address    = {Québec City QC Canada},
+  title      = {{ZIPT}: {Zero}-{Integration} {Performance} {Testing} of {Mobile} {App} {Designs}},
+  isbn       = {978-1-4503-4981-9},
+  shorttitle = {{ZIPT}},
+  url        = {https://dl.acm.org/doi/10.1145/3126594.3126647},
+  doi        = {10.1145/3126594.3126647},
+  language   = {en},
+  urldate    = {2021-11-30},
+  booktitle  = {Proceedings of the 30th {Annual} {ACM} {Symposium} on {User} {Interface} {Software} and {Technology}},
+  publisher  = {ACM},
+  author     = {Deka, Biplab and Huang, Zifeng and Franzen, Chad and Nichols, Jeffrey and Li, Yang and Kumar, Ranjitha},
+  month      = oct,
+  year       = {2017},
+  pages      = {727--736}
+}
+
+@inproceedings{deka_erica_2016,
+  address    = {New York, NY, USA},
+  series     = {{UIST} '16},
+  title      = {{ERICA}: {Interaction} {Mining} {Mobile} {Apps}},
+  isbn       = {978-1-4503-4189-9},
+  shorttitle = {{ERICA}},
+  url        = {https://doi.org/10.1145/2984511.2984581},
+  doi        = {10.1145/2984511.2984581},
+  abstract   = {Design plays an important role in adoption of apps. App design, however, is a complex process with multiple design activities. To enable data-driven app design applications, we present interaction mining -- capturing both static (UI layouts, visual details) and dynamic (user flows, motion details) components of an app's design. We present ERICA, a system that takes a scalable, human-computer approach to interaction mining existing Android apps without the need to modify them in any way. As users interact with apps through ERICA, it detects UI changes, seamlessly records multiple data-streams in the background, and unifies them into a user interaction trace. Using ERICA we collected interaction traces from over a thousand popular Android apps. Leveraging this trace data, we built machine learning classifiers to detect elements and layouts indicative of 23 common user flows. User flows are an important component of UX design and consists of a sequence of UI states that represent semantically meaningful tasks such as searching or composing. With these classifiers, we identified and indexed more than 3000 flow examples, and released the largest online search engine of user flows in Android apps.},
+  urldate    = {2021-12-07},
+  booktitle  = {Proceedings of the 29th {Annual} {Symposium} on {User} {Interface} {Software} and {Technology}},
+  publisher  = {Association for Computing Machinery},
+  author     = {Deka, Biplab and Huang, Zifeng and Kumar, Ranjitha},
+  month      = oct,
+  year       = {2016},
+  keywords   = {app design, design mining, interaction mining, user flows},
+  pages      = {767--776}
+}
+
+@article{liu_patterns_2017,
+  title      = {Patterns and {Sequences}: {Interactive} {Exploration} of {Clickstreams} to {Understand} {Common} {Visitor} {Paths}},
+  volume     = {23},
+  issn       = {1077-2626},
+  shorttitle = {Patterns and {Sequences}},
+  url        = {http://ieeexplore.ieee.org/document/7539341/},
+  doi        = {10.1109/TVCG.2016.2598797},
+  number     = {1},
+  urldate    = {2021-11-10},
+  journal    = {IEEE Transactions on Visualization and Computer Graphics},
+  author     = {Liu, Zhicheng and Wang, Yang and Dontcheva, Mira and Hoffman, Matthew and Walker, Seth and Wilson, Alan},
+  month      = jan,
+  year       = {2017},
+  pages      = {321--330}
+}
+
+@inproceedings{wei_visual_2012,
+  address   = {Seattle, WA, USA},
+  title     = {Visual cluster exploration of web clickstream data},
+  isbn      = {978-1-4673-4753-2 978-1-4673-4752-5},
+  url       = {http://ieeexplore.ieee.org/document/6400494/},
+  doi       = {10.1109/VAST.2012.6400494},
+  urldate   = {2021-11-10},
+  booktitle = {2012 {IEEE} {Conference} on {Visual} {Analytics} {Science} and {Technology} ({VAST})},
+  publisher = {IEEE},
+  author    = {Wei, Jishang and Shen, Zeqian and Sundaresan, Neel and Ma, Kwan-Liu},
+  month     = oct,
+  year      = {2012},
+  pages     = {3--12}
+}
+
+@article{wongsuphasawat_exploring_2012,
+  title   = {Exploring {Flow}, {Factors}, and {Outcomes} of {Temporal} {Event} {Sequences} with the {Outflow} {Visualization}},
+  volume  = {18},
+  issn    = {1077-2626},
+  url     = {http://ieeexplore.ieee.org/document/6327272/},
+  doi     = {10.1109/TVCG.2012.225},
+  number  = {12},
+  urldate = {2021-11-10},
+  journal = {IEEE Transactions on Visualization and Computer Graphics},
+  author  = {Wongsuphasawat, K. and Gotz, D.},
+  month   = dec,
+  year    = {2012},
+  pages   = {2659--2668},
+  file    = {Wongsuphasawat and Gotz - 2012 - Exploring Flow, Factors, and Outcomes of Temporal .pdf:/Volumes/Users/kim/Zotero/storage/4ILEZ7R3/Wongsuphasawat and Gotz - 2012 - Exploring Flow, Factors, and Outcomes of Temporal .pdf:application/pdf}
+}
+
+
+@inproceedings{ebel_role_2020,
+  address    = {Virtual Event DC USA},
+  title      = {The {Role} and {Potentials} of {Field} {User} {Interaction} {Data} in the {Automotive} {UX} {Development} {Lifecycle}: {An} {Industry} {Perspective}},
+  isbn       = {978-1-4503-8065-2},
+  shorttitle = {The {Role} and {Potentials} of {Field} {User} {Interaction} {Data} in the {Automotive} {UX} {Development} {Lifecycle}},
+  url        = {https://dl.acm.org/doi/10.1145/3409120.3410638},
+  doi        = {10.1145/3409120.3410638},
+  abstract   = {We are interested in the role of field user interaction data in the development of In-Vehicle Information Systems (IVISs), the potentials practitioners see in analyzing this data, the concerns they share, and how this compares to companies with digital products. We conducted interviews with 14 UX professionals, 8 from automotive and 6 from digital companies, and analyzed the results by emergent thematic coding. Our key findings indicate that implicit feedback through field user interaction data is currently not evident in the automotive UX development process. Most decisions regarding the design of IVISs are made based on personal preferences and the intuitions of stakeholders. However, the interviewees also indicated that user interaction data has the potential to lower the influence of guesswork and assumptions in the UX design process and can help to make the UX development lifecycle more evidence-based and user-centered.},
+  language   = {en},
+  urldate    = {2021-11-30},
+  booktitle  = {12th {International} {Conference} on {Automotive} {User} {Interfaces} and {Interactive} {Vehicular} {Applications}},
+  publisher  = {ACM},
+  author     = {Ebel, Patrick and Brokhausen, Florian and Vogelsang, Andreas},
+  month      = sep,
+  year       = {2020},
+  pages      = {141--150}
+}
+
+@inproceedings{ebel_visualizing_2021,
+  address   = {Leeds United Kingdom},
+  title     = {Visualizing {Event} {Sequence} {Data} for {User} {Behavior} {Evaluation} of {In}-{Vehicle} {Information} {Systems}},
+  isbn      = {978-1-4503-8063-8},
+  url       = {https://dl.acm.org/doi/10.1145/3409118.3475140},
+  doi       = {10.1145/3409118.3475140},
+  abstract  = {With modern In-Vehicle Information Systems (IVISs) becoming more capable and complex than ever, their evaluation becomes increasingly difficult. The analysis of large amounts of user behavior data can help to cope with this complexity and can support UX experts in designing IVISs that serve customer needs and are safe to operate while driving. We, therefore, propose a Multi-level User Behavior Visualization Framework providing effective visualizations of user behavior data that is collected via telematics from production vehicles. Our approach visualizes user behavior data on three different levels: (1) The Task Level View aggregates event sequence data generated through touchscreen interactions to visualize user flows. (2) The Flow Level View allows comparing the individual flows based on a chosen metric. (3) The Sequence Level View provides detailed insights into touch interactions, glance, and driving behavior. Our case study proves that UX experts consider our approach a useful addition to their design process.},
+  language  = {en},
+  urldate   = {2021-11-30},
+  booktitle = {13th {International} {Conference} on {Automotive} {User} {Interfaces} and {Interactive} {Vehicular} {Applications}},
+  publisher = {ACM},
+  author    = {Ebel, Patrick and Lingenfelder, Christoph and Vogelsang, Andreas},
+  month     = sep,
+  year      = {2021},
+  pages     = {219--229}
+}
+
+@inproceedings{korber_user_2013,
+  title     = {User experience evaluation in an automotive context},
+  doi       = {10.1109/IVWorkshops.2013.6615219},
+  abstract  = {Tough competition in the automobile market makes it very important to exceed customer expectations with in-vehicle devices or applications in order to stand out in an already saturated market. Research on human-machine interaction (HMI) showed that user satisfaction is not only influenced by usability factors but also by user experience (UX). Since UX in the automotive context has not yet been comprehensively investigated, this article presents a feasible research method for the measurement of UX. We rely on the fulfillment of psychological needs as a user experience measurement and conducted three online surveys to develop a questionnaire for that purpose. We analyze nine need scales, each with 10 items, and reduced the item count afterwards for a shorter form of the questionnaire. Results reveal that the method successfully measured the intended needs. Future work with respect to a further extension and improvement of the method is discussed.},
+  booktitle = {2013 {IEEE} {Intelligent} {Vehicles} {Symposium} {Workshops} ({IV} {Workshops})},
+  author    = {Körber, Moritz and Eichinger, Armin and Bengler, Klaus and Olaverri-Monreal, Cristina},
+  month     = jun,
+  year      = {2013},
+  keywords  = {Usability, Context, Automotive engineering, Correlation, Reliability, Standards, Vehicles},
+  pages     = {13--18},
+  annote    = {Importance of UX to compete in the market:
+               "Tough competition in the automobile market makes it very important to exceed customer expectations with in-vehicle devices or applications in order to stand out in an already saturated market."}
+}
+ 
+
+@article{ebel_automotive_2021,
+  title      = {Automotive {UX} design and data-driven development: {Narrowing} the gap to support practitioners},
+  volume     = {11},
+  issn       = {25901982},
+  shorttitle = {Automotive {UX} design and data-driven development},
+  url        = {https://linkinghub.elsevier.com/retrieve/pii/S2590198221001603},
+  doi        = {10.1016/j.trip.2021.100455},
+  abstract   = {The development and evaluation of In-Vehicle Information Systems (IVISs) is strongly based on insights from qualitative studies conducted in artificial contexts (e.g., driving simulators or lab experiments). However, the growing complexity of the systems and the uncertainty about the context in which they are used, create a need to augment qualitative data with quantitative data, collected during real-world driving. In contrast to many digital companies that are already successfully using data-driven methods, Original Equipment Manufacturers (OEMs) are not yet succeeding in releasing the potentials such methods offer. We aim to understand what prevents automotive OEMs from applying data-driven methods, what needs practitioners formulate, and how collecting and analyzing usage data from vehicles can enhance UX activities. We adopted a Multiphase Mixed Methods approach comprising two interview studies with more than 15 UX practitioners and two action research studies conducted with two different OEMs. From the four studies, we synthesize the needs of UX designers, extract limitations within the domain that hinder the application of data-driven methods, elaborate on unleveraged potentials, and formulate recommendations to improve the usage of vehicle data. We conclude that, in addition to modernizing the legal, technical, and organizational infrastructure, UX and Data Science must be brought closer together by reducing silo mentality and increasing interdisciplinary collaboration. New tools and methods need to be developed and UX experts must be empowered to make data-based evidence an integral part of the UX design process.},
+  language   = {en},
+  urldate    = {2021-11-09},
+  journal    = {Transportation Research Interdisciplinary Perspectives},
+  author     = {Ebel, Patrick and Orlovska, Julia and Hünemeyer, Sebastian and Wickman, Casper and Vogelsang, Andreas and Söderberg, Rikard},
+  month      = sep,
+  year       = {2021},
+  pages      = {100455},
+  file       = {Ebel et al. - 2021 - Automotive UX design and data-driven development .pdf:/Volumes/Users/kim/Zotero/storage/LR8RRXER/Ebel et al. - 2021 - Automotive UX design and data-driven development .pdf:application/pdf}
+}
+
+
+@incollection{himmels_measuring_2021,
+  address    = {New York, NY, USA},
+  title      = {Measuring user experience in automated driving: {Developing} a single-item measure},
+  isbn       = {978-1-4503-8063-8},
+  shorttitle = {Measuring user experience in automated driving},
+  url        = {https://doi.org/10.1145/3409118.3475135},
+  abstract   = {Measuring user experience is highly important for human-centered development and thus for designing automated driving systems. Multi-item measures such as the System Usability Scale (SUS) [7] or the Usability Metric for User Experience (UMUX) [14] are commonly used for collecting user feedback on technical systems or products. The goal of the present study was to investigate the potentials of a single-item approach as an economic alternative for measuring user experience compared to multi-item scales. Therefore, a single-item measure was developed to assess both event-related and cumulative user experience in automated driving. User experience was manipulated in a between-subject design implemented in a real-world driving task and feedback was collected using the newly developed Single Item User Experience (SIUX) scale, the UMUX, and the SUS. Results indicate that the SIUX scale is more sensitive than the UMUX to differences in event-related user experience, but not in cumulative user experience. Both the SIUX and the UMUX were more sensitive than the SUS when measuring differences in cumulative user experience. Future studies should be aimed at investigating the applicability of the SIUX scale to domains other than automated driving and at collecting more extensive data on validity and reliability of all three instruments.},
+  urldate    = {2021-11-09},
+  booktitle  = {13th {International} {Conference} on {Automotive} {User} {Interfaces} and {Interactive} {Vehicular} {Applications}},
+  publisher  = {Association for Computing Machinery},
+  author     = {Himmels, Chantal and Omozik, Kamil and Jarosch, Oliver and Buchner, Axel},
+  month      = sep,
+  year       = {2021},
+  keywords   = {automated driving, Single Item User Experience, single-item measures, System Usability Scale, Usability Metric for User Experience, user experience measures, user experience research},
+  pages      = {191--200}
+}
+
+
+@incollection{ahlemann_data-driven_2021,
+  address    = {Cham},
+  title      = {Data-{Driven} {Competitive} {Advantages} in {Digital} {Markets}: {An} {Overview} of {Data} {Value} and {Facilitating} {Factors}},
+  volume     = {48},
+  isbn       = {978-3-030-86799-7 978-3-030-86800-0},
+  shorttitle = {Data-{Driven} {Competitive} {Advantages} in {Digital} {Markets}},
+  url        = {https://link.springer.com/10.1007/978-3-030-86800-0_31},
+  abstract   = {Recent high-profile merger and antitrust cases as well as policy debates worldwide have focused on the relationship between access to (big) data and firms’ competitive advantages in digital markets. These discussions have brought forward numerous conceptual arguments for and against the conjecture that market power may be derived from a firm’s access to big data. Based on a review of the economic, information systems and management literature, this paper presents an overview of the aggregate empirical evidence on the business value and economic benefits that firms can indeed create from big data in the Internet economy. Moreover, six facilitating factors for data-driven market power are proposed that enable a firm to establish a sustained competitive advantage based on the economic benefits from data. Finally, we point to policy measures which may address competitive concerns in data-driven digital markets and highlight opportunities for future information systems policy research.},
+  language   = {en},
+  urldate    = {2021-11-11},
+  booktitle  = {Innovation {Through} {Information} {Systems}},
+  publisher  = {Springer International Publishing},
+  author     = {Fast, Victoria and Schnurr, Daniel and Wohlfarth, Michael},
+  editor     = {Ahlemann, Frederik and Schütte, Reinhard and Stieglitz, Stefan},
+  year       = {2021},
+  doi        = {10.1007/978-3-030-86800-0_31},
+  pages      = {454--454},
+  annote     = {The collection and processing of data enables CSPs (Content and Service Providers) to continuously improve the quality of their offerings. The analysis of individual clickstream data (possibly enriched by additional data sets) allows CSPs to derive general insights about users’ browsing behavior and thus provides opportunities to adapt the design and navigation of user-facing interfaces according to their primary business goals [26], [29].},
+  file       = {Fast et al. - 2021 - Data-Driven Competitive Advantages in Digital Mark.pdf:/Volumes/Users/kim/Zotero/storage/LDTDVTYU/Fast et al. - 2021 - Data-Driven Competitive Advantages in Digital Mark.pdf:application/pdf}
+}
+
+
+@inproceedings{johanson_big_2014,
+  title      = {Big {Automotive} {Data}: {Leveraging} large volumes of data for knowledge-driven product development},
+  shorttitle = {Big {Automotive} {Data}},
+  doi        = {10.1109/BigData.2014.7004298},
+  abstract   = {To be successful in the increasingly competitive consumer vehicle market, automotive manufacturers must be highly responsive to customer needs and market trends, while responding to the challenges of climate change and sustainable development. One key to achieving this is to promote knowledge-driven product development through large scale collection of data from connected vehicles, to capture customer needs and to gather performance data, diagnostic data and statistics. Since the volume of data collected from fleets of vehicles using telematics services can be very high, it is important to design the systems and frameworks in a way that is highly scalable and efficient. This can be described as a Big Data challenge in an automotive context. In this paper, we explore the opportunities of leveraging Big Automotive Data for knowledge driven product development, and we present a technological framework for capture and online analysis of data from connected vehicles.},
+  booktitle  = {2014 {IEEE} {International} {Conference} on {Big} {Data} ({Big} {Data})},
+  author     = {Johanson, Mathias and Belenki, Stanislav and Jalminger, Jonas and Fant, Magnus and Gjertz, Mats},
+  month      = oct,
+  year       = {2014},
+  keywords   = {analytics, Automotive engineering, automotive telematics, big data, Big data, Context, Monitoring, Product development, Telematics, Vehicles},
+  pages      = {736--741},
+  file       = {IEEE Xplore Abstract Record:/Volumes/Users/kim/Zotero/storage/ANF7WXS4/7004298.html:text/html;Johanson et al. - 2014 - Big Automotive Data Leveraging large volumes of d.pdf:/Volumes/Users/kim/Zotero/storage/TTRNW6GR/Johanson et al. - 2014 - Big Automotive Data Leveraging large volumes of d.pdf:application/pdf}
+}
+
+@inproceedings{chanias_understanding_2016,
+  title     = {Understanding {Digital} {Transformation} {Strategy} {Formation}: {Insights} from {Europe}'s {Automotive} {Industry}},
+  url       = {http://aisel.aisnet.org/pacis2016/296},
+  abstract  = {An increasing number of firms are responding to new opportunities and risks originating from digital technologies by introducing company-wide digital transformation strategies as a means to systematically address their digital transformation. Yet, what processes and strategizing activities affect the formation of digital transformation strategies in organizations are not well understood. We adopt a phenomenon-based approach and investigate the formation of digital transformation strategies in organizations from a process perspective. Drawing on an activity-based process model that links Mintzberg’s strategy typology with the concept of IS strategizing, we conduct a multiple-case study at three European car manufacturers. Our results indicate that digital transformation strategies are predominantly shaped by a diversity of emergent strategizing activities of separate organizational subcommunities through a bottom-up process and prior to the initiation of a holistic digital transformation strategy by top management. As a result, top management’s deliberate strategies seek to accomplish the subsequent alignment of preexisting emergent strategy contents with their intentions and to simultaneously increase the share of deliberate contents. Besides providing practical implications for the formulation and implementation of a digital transformation strategy, we contribute to the literature on digital transformation and IS strategizing.},
+  language  = {en},
+  booktitle = {{PACIS} 2016 {Proceedings}},
+  author    = {Chanias, Simon and Hess, Thomas},
+  year      = {2016}
+}
+
+@inproceedings{riasanow_digital_2017,
+  title     = {Digital {Transformation} in the {Automotive} {Industry}: {Towards} a {Generic} {Value} {Network}},
+  abstract  = {The emergence of digital innovations is accelerating and intervening existing business models by delivering opportunities for new services. Drawing on the automotive industry, leading trends like self-driving cars, connectivity and car sharing are creating new business models. These are simultaneously giving rise for innovative market entrants, which begin to transform the automotive industry. However, literature does not provide a generic value network of the automotive industry, including new market players. The paper aims to visualize the current automotive ecosystem, by evolving a generic value network using the e³-value method. We define different roles, which are operating in the automotive industry by analyzing 650 companies reported in the Crunchbase database and present the value streams within the ecosystem. To validate the proposed generic value network we conducted five preliminary interviews with experts from the automotive industry. Our results show the central role of mobility service platforms, emerging disruptive technology providers and the dissemination of industries, e.g., as OEMs collaborate with mobile payment providers. Scholars in this field can apply the developed generic value network for further research, while car manufacturers may apply the model to position themselves in their market and to identify possible disruptive actors or potential business opportunities.},
+  language  = {en},
+  booktitle = {Proceedings of the 25th European Conference on Information Systems (ECIS)},
+  author    = {Riasanow, Tobias and Galic, Gabriela and Böhm, Markus},
+  year      = {2017},
+  pages     = {3191--3201}
+}
+
+@misc{hoffmann_survival_2019,
+  title    = {A {Survival} {Guide} for {Europe}’s {Car} {Dealers}},
+  note     = {https://www.bain.com/insights/a-survival-guide-for-europes-car-dealers/},
+  abstract = {Five powerful forces are disrupting the auto industry’s traditional sales model.},
+  language = {en},
+  urldate  = {2021-11-12},
+  journal  = {Bain},
+  author   = {Hoffmann, Marcus and Zayer, Eric and Strempel, Karl},
+  year     = {2019}
+}
+
+@article{llopis-albert_impact_2021,
+  title    = {Impact of digital transformation on the automotive industry},
+  volume   = {162 (2021) 120343},
+  issn     = {0040-1625},
+  url      = {https://www.sciencedirect.com/science/article/pii/S0040162520311690},
+  doi      = {10.1016/j.techfore.2020.120343},
+  abstract = {Digital technologies are transforming the automotive industry and disrupting traditional business models. New business opportunities related to Industry 4.0 are emerging, so companies must adapt to the new environment. The study presents an application of fuzzy-set qualitative comparative analysis (fsQCA) to analyze the future impact of digital transformation on business performance models and the different actors’ satisfaction. A wide range of aspects and actors derived from the digital transformation process in the automotive industry are considered. The study covers connected and autonomous driving, mobility as a service, digital information sources in car purchasing, big data, etc. The disruptive effect of the gradual introduction of electric vehicles into the market is also considered, which is boosted by environmental policies on climate change and directives for the potential use of renewable energy sources to power electric vehicles. On the other hand, the study analyses the impacts of digital transformation on the automotive industry from the point of view of different actors, ranging from automobile manufacturers, service providers, public transportation providers, and consumers to governments. The methodology has been successfully applied to a complex case study‐based empirical analysis. It presents a novel application of fsQCA to digital transformation in the automotive industry in Spain. The conclusions show that it is necessary to invest in adequate measures for adaptation to digital transformation, and manufacturers will end up having greater profits, productivity, and competitiveness. From the point of view of consumers, there will be access to more and better services and greater satisfaction with the required services.},
+  language = {en},
+  urldate  = {2021-11-12},
+  journal  = {Technological Forecasting and Social Change},
+  author   = {Llopis-Albert, Carlos and Rubio, Francisco and Valero, Francisco},
+  year     = {2021},
+  keywords = {Automotive industry, Competitiveness, Digital transformation, FsQCA, Greenhouse gas emissions, Productivity}
+}
+
+
+@techreport{gao_automotive_2016,
+  title       = {Automotive revolution - perspective towards 2030: {How} the convergence of disruptive technology-driven trends could transform the auto industry},
+  url         = {https://www.mckinsey.com/~/media/McKinsey/Industries/Automotive%20and%20Assembly/Our%20Insights/Disruptive%20trends%20that%20will%20transform%20the%20auto%20industry/Auto%202030%20report%20Jan%202016.ashx},
+  urldate     = {2021-11-12},
+  institution = {McKinsey \& Company},
+  author      = {Gao, Paul and Kaas, Hans-Werner and Mohr, Det and Wee, Dominik},
+  year        = {2016}
+}
+
+
+@inproceedings{hanelt_digital_2015,
+  address   = {Osnabrück, Germany},
+  title     = {Digital {Transformation} of {Primarily} {Physical} {Industries} – {Exploring} the {Impact} of {Digital} {Trends} on {Business} {Models} of {Automobile} {Manufacturers}},
+  abstract  = {The phenomenon of digital transformation received some attention in previous literature concerning industries such as media, entertainment and publishing. However, there is a lack of understanding about digital transformation of primarily physical industries, whose products cannot be completely digitized, e.g., automotive industry. We conducted a rigorous content analysis of substantial secondary data from industry magazines aiming to generate insights to this phenomenon in the automotive industry. We examined the impact of major digital trends on dominant business models. Our findings indicate that trends related to social media, mobile, big data and cloud computing are driving automobile manufactures to extend, revise, terminate, and create business models. By doing so, they contribute to the constitution of a digital layer upon the physical mobility infrastructure. Despite its strong foundation in the physical world, the industry is undergoing important structural changes due to the ongoing digitalization of consumer lives and business.},
+  language  = {en},
+  booktitle = {Wirtschaftsinformatik},
+  author    = {Hanelt, Andre and Piccinini, Everlin and Gregory, Robert W and Hildebrandt, Björn},
+  year      = {2015},
+  pages     = {1313--1327}
+}
+
+
+@incollection{zheng_visualizing_2007,
+  address    = {Berlin, Heidelberg},
+  title      = {Visualizing {User} {Experience} {Through} “{Perceptual} {Maps}”: {Concurrent} {Assessment} of {Perceived} {Usability} and {Subjective} {Appearance} in {Car} {Infotainment} {Systems}},
+  volume     = {4561},
+  isbn       = {978-3-540-73318-8 978-3-540-73321-8},
+  shorttitle = {Visualizing {User} {Experience} {Through} “{Perceptual} {Maps}”},
+  url        = {http://link.springer.com/10.1007/978-3-540-73321-8_62},
+  abstract   = {Users’ perceptions of the appearance and the usability of an interactive system are two integral parts that contribute to the users’ experience of the system. “Actual usability” represents a system value that is revealed either during usability testing and related methods by experts or during use by the target users. Perceived usability is an assumption about a systems’ usability that has been made prior to, or independent of, its use. The appearance of a product can inadvertently affect its perceived usability; however, their relationship has not been systematically explored. We describe an approach that uses “perceptual maps” to visualize the relationship between perceived usability and subjective appearance. A group of professional designers rated representative car infotainment systems for their subjective appearance; a group of usability experts rated the same models for their perceived usability. We applied multidimensional scaling (MDS) to project the ratings into the same Euclidean space. The results show certain overlap between the perceptions of product appearance and usability. The implications of this approach for designing interactive systems are discussed.},
+  language   = {en},
+  urldate    = {2021-11-11},
+  booktitle  = {Digital {Human} {Modeling}},
+  publisher  = {Springer Berlin Heidelberg},
+  author     = {Zheng, Xianjun Sam and Lin, James J. W. and Zapf, Salome and Knapheide, Claus},
+  editor     = {Hutchison, David and Kanade, Takeo and Kittler, Josef and Kleinberg, Jon M. and Mattern, Friedemann and Mitchell, John C. and Naor, Moni and Nierstrasz, Oscar and Pandu Rangan, C. and Steffen, Bernhard and Sudan, Madhu and Terzopoulos, Demetri and Tygar, Doug and Vardi, Moshe Y. and Weikum, Gerhard and Duffy, Vincent G.},
+  year       = {2007},
+  doi        = {10.1007/978-3-540-73321-8_62},
+  note       = {Series Title: Lecture Notes in Computer Science},
+  pages      = {536--545}
+}
+
+@article{hoff_trust_2015,
+  title      = {Trust in {Automation}: {Integrating} {Empirical} {Evidence} on {Factors} {That} {Influence} {Trust}},
+  volume     = {57},
+  issn       = {0018-7208, 1547-8181},
+  shorttitle = {Trust in {Automation}},
+  url        = {http://journals.sagepub.com/doi/10.1177/0018720814547570},
+  doi        = {10.1177/0018720814547570},
+  abstract   = {Objective: We systematically review recent empirical research on factors that influence trust in automation to present a three-layered trust model that synthesizes existing knowledge.
+                Background: Much of the existing research on factors that guide human-automation interaction is centered around trust, a variable that often determines the willingness of human operators to rely on automation. Studies have utilized a variety of different automated systems in diverse experimental paradigms to identify factors that impact operators’ trust.
+                Method: We performed a systematic review of empirical research on trust in automation from January 2002 to June 2013. Papers were deemed eligible only if they reported the results of a human-subjects experiment in which humans interacted with an automated system in order to achieve a goal. Additionally, a relationship between trust (or a trust-related behavior) and another variable had to be measured. All together, 101 total papers, containing 127 eligible studies, were included in the review.
+                Results: Our analysis revealed three layers of variability in human–automation trust (dispositional trust, situational trust, and learned trust), which we organize into a model. We propose design recommendations for creating trustworthy automation and identify environmental conditions that can affect the strength of the relationship between trust and reliance. Future research directions are also discussed for each layer of trust.
+                Conclusion: Our three-layered trust model provides a new lens for conceptualizing the variability of trust in automation. Its structure can be applied to help guide future research and develop training interventions and design procedures that encourage appropriate trust.},
+  language   = {en},
+  number     = {3},
+  urldate    = {2021-11-29},
+  journal    = {Human Factors: The Journal of the Human Factors and Ergonomics Society},
+  author     = {Hoff, Kevin Anthony and Bashir, Masooda},
+  year       = {2015},
+  pages      = {407--434}
+}
+
+@inproceedings{frison_ux_2019,
+  address    = {Glasgow Scotland Uk},
+  title      = {In {UX} {We} {Trust}: {Investigation} of {Aesthetics} and {Usability} of {Driver}-{Vehicle} {Interfaces} and {Their} {Impact} on the {Perception} of {Automated} {Driving}},
+  isbn       = {978-1-4503-5970-2},
+  shorttitle = {In {UX} {We} {Trust}},
+  url        = {https://dl.acm.org/doi/10.1145/3290605.3300374},
+  doi        = {10.1145/3290605.3300374},
+  language   = {en},
+  urldate    = {2021-11-29},
+  booktitle  = {Proceedings of the 2019 {CHI} {Conference} on {Human} {Factors} in {Computing} {Systems}},
+  author     = {Frison, Anna-Katharina and Wintersberger, Philipp and Riener, Andreas and Schartmüller, Clemens and Boyle, Linda Ng and Miller, Erika and Weigl, Klemens},
+  year       = {2019},
+  pages      = {1--13}
+}
+
+@inproceedings{mattos_2017,
+  author    = {Mattos, David Issa and Bosch, Jan and Olsson, Helena Holmström},
+  booktitle = {2017 43rd Euromicro Conference on Software Engineering and Advanced Applications (SEAA)},
+  title     = {Your System Gets Better Every Day You Use It: Towards Automated Continuous Experimentation},
+  year      = {2017},
+  volume    = {},
+  number    = {},
+  pages     = {256-265},
+  abstract  = {Innovation and optimization in software systems can occur from pre-development to post-deployment stages. Companies are increasingly reporting the use of experiments with customers in their systems in the post-deployment stage. Experiments with customers and users are can lead to a significant learning and return-on-investment. Experiments are used for both validation of manual hypothesis testing and feature optimization, linked to business goals. Automated experimentation refers to having the system controlling and running the experiments, opposed to having the R&D organization in control. Currently, there are no systematic approaches that combine manual hypothesis validation and optimization in automated experiments. This paper presents concepts related to automated experimentation, as controlled experiments, machine learning and software architectures for adaptation. However, this paper focuses on how architectural aspects that can contribute to support automated experimentation. A case study using an autonomous system is used to demonstrate the developed initial architecture framework. The contributions of this paper are threefold. First, it identifies software architecture qualities to support automated experimentation. Second, it develops an initial architecture framework that supports automated experiments and validates the framework with an autonomous mobile robot. Third, it identifies key research challenges that need to be addressed to support further development of automated experimentation.},
+  keywords  = {},
+  doi       = {10.1109/SEAA.2017.15},
+  issn      = {},
+  month     = {Aug}
+}
+
+@article{schermann_2018,
+  author   = {Schermann, Gerald and Cito, Jürgen and Leitner, Philipp},
+  journal  = {IEEE Software},
+  title    = {Continuous Experimentation: Challenges, Implementation Techniques, and Current Research},
+  year     = {2018},
+  volume   = {35},
+  number   = {2},
+  pages    = {26-31},
+  abstract = {Continuous experimentation is an up-and-coming technique for requirements engineering and testing, particularly for web-based systems. On the basis of a practitioner survey, this article gives an overview of challenges, implementation techniques, and current research in the field. This article is part of a theme issue on release engineering.},
+  keywords = {},
+  doi      = {10.1109/MS.2018.111094748},
+  issn     = {1937-4194},
+  month    = {March}
+}
