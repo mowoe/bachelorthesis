@@ -28,7 +28,7 @@
 \begin{document}
 \pagestyle{plain}
 \title{\rmfamily\normalfont\spacedallcaps{Bachelor Thesis Expos\'{e}}}
-\subtitle{\rmfamily\normalfont{Optimizing perceived aesthetics of UIs using diffusion based generative models}}
+\subtitle{\rmfamily\normalfont{Optimizing perceived aesthetics of UIs using metric guided generative pipelines}}
 % Metric based optimization of user interface layouts using automated segmentation
 \author{\spacedlowsmallcaps{Moritz Wörmann}}
 
@@ -36,34 +36,35 @@
 \begin{acronym}
     \acro{ux}[UX]{User Experience}
     \acro{ui}[UI]{User Interface}
-    \acro{uis}[UIs]{User Interfaces}
     \acro{hmi}[HMI]{Human-Machine Interface}
-    \acro{ivis}[IVIS]{In-Vehicle Information Systems}
     \acro{kpi}[KPI]{Key Performance Indicators}
     \acro{sus}[SUS]{System Usability Scale}
     \acro{pssuq}[PSSUQ]{Post-Study System Usability Questionnaire}
     \acro{utaut}[UTAUT]{Unified Theory of Acceptance and Use of Technology}
     \acro{umux}[UMUX]{Usability Metric for User Experience}
     \acro{vae}{VAE}{Variational Autoencoder}
+    \acro{ocr}{OCR}{Optical Character Recognition}
 \end{acronym}
 
 \section{Motivation and Background}
 % What's the problem? \\
 % Why is it important to solve?
-Through tools like Figma \footnote{\url{https://www.figma.com/}.}
-and co., the entry barriers for creating Apps and Websites with \ac{uis} for users to 
-interact with decrease steadily. However, designing visually pleasing \ac{uis}  still 
-proves to be a complicated task, especially since these are highly subjective categories. 
+Through \ac{ui} design tools like Figma \footnote{\url{https://www.figma.com/}.}, it gets easier to create \acp{ui} for Apps and Websites for users to interact with. However, designing visually pleasing \acp{ui} still 
+proves to be a complicated task, especially since these are highly subjective categories. \cite{vonwangenheim2018agree}
 This challenge becomes even more significant when considering the impact initial 
-impressions of a UI can have on the users perception and further willingness to stay on 
+impressions of a \ac{ui} can have on the users perception and on the willingness to stay on 
 the website or the mobile app~\cite{effects_of_website_designs}. Currently, designing a 
 new \ac{ui} is often a task for multiple teams with different professions, 
-like graphic design and software engineering. While modern project management strategies
+like graphic design and software engineering. 
+% #####################
+While modern project management strategies
  like Scrum can alleviate the difficulties introduced by aligning and communicating 
  stakeholder and user interests with the final product, they still rely heavily on good
- communication and the abundancy of time. Automating this task or provding assistance 
+ communication and the abundancy of time and therefore dont fully alleviate the challenges associated with \ac{ui} design. 
+ % #####################
+ Automating the task of creating \acp{ui} or provding assistance 
  via automatic algorithms is therefore a worthwile subject as an "end-to-end" process 
- of creating user-interfaces or at least optimising existing \ac{uis} can reduce time 
+ of creating user-interfaces or at least optimising existing \acp{ui} can reduce time 
 and effort. 
 
 Layout generation tasks describe the challenge of aligning different elements and components
@@ -74,9 +75,17 @@ of defining what is considered visually pleasing for humans is not straight forw
 
 \section{Problem Description}
 % What are the research questions?
+
+
+% NNNNNEEEEEEEWWWWWWW
+
+The objective of this research is to develop a comprehensive methodology that can be utilized by a potential user to input an image of an existing UI and potentially provide additional instructions. This automated pipeline would be capable of segmenting the UI into its components and rearranging them in a more optimal or visually appealing manner. This segmentation process can be conceptualized as a transformation or mapping of the UI into a distinct space, which might be referred to as a latent space. 
+
+
+% OOOOOLLLLLLLDDDDDDDD
 The goal of this research is to provide a potential user with a fully usable pipeline in
  which they can input an image of an already existing \ac{ui} and potentially provide 
- additional instructions. This automated pipeline would be able to segment the \ac{UI} into
+ additional instructions. This automated pipeline would be able to segment the \ac{ui} into
  its components and rearrange them in a better or visually more pleasing way. This segmentation
  process thus functions as a transformation or mapping of the \ac{ui} into a different space,
  which might even be called a latent space. An algorithm or model can operate in this space
@@ -98,12 +107,15 @@ The goal of this research is to provide a potential user with a fully usable pip
  %2023: Luis A. Leive et al.~\cite{Leiva2023}
 To solve these questions the following research questions will be answered:
 \begin{enumerate}[label*=RQ \arabic*]
-  \item How can \ac{uis} be segmented in a way such that the segmentation can be optimized and later reassembled?
-  \item How does an optimal latent space in which the User Interface Layout can be represented look? How can this space be used to optimize \ac{uis} after they have been segmented in order to maximize perceived aesthetic, measured by a pretrained classifier?
+  \item How can \acp{ui} be segmented in a way such that the layout can be optimized and reassembled?
+  \item What characteristics should a suitable latent space possess in order to be utilized for the projection of user interfaces (UIs), which can then be optimized and graded by an automatic classifier?
   \item How can (accidental) adversarial attacks by the optimizer against the Aesthetic Predictor be avoided?
   \item Do Diffusion Models provide advantages, either via Pix2Pix optimization or via a different latent space which represents the \ac{ui}
-  \item How can all of these different approaches be constrained with user supplied input?
-  \item How can one of these approaches be packaged and supplied to a potential user in an end-to-end pipeline?
+  \item How can the generation by all of the different approaches be constrained with user supplied input on high-level positional relationship between \ac{ui} elements?
+  % ######### May need to get excluded for now as no way to grade without usability study 
+  \item How can a finished tool look which supports a potential user in a meaningful way during the layouting and design process?
+
+  
   %\item How does a latent space 
 	%\item How can Text2Img models like StableDiffusion ~\cite{rombach2021highresolution} be used to optimize the perceived aesthetics of user interfaces?
 	%\item How can the optimization process be restricted to allow for user input prohibiting changes in parts of the design which are integral to the predefined design language including logos, fonts and colors?
@@ -122,79 +134,105 @@ In the next sections, related work is portrayed, after which a structure for the
 %A central question which often remains unanswered is how an optimization process can be guided and restricted such that the target space is reduced in a way that intended design constructs like company logos are kept beyond the optimization process.
 %In 2024 Jian Chen et al. ~\cite{chen2024aligned} have shown how this may be accomplished through masking of the input. This may be transferred to a Text2Img pipeline via a process commonly referred to as Inpainting ~\cite{rombach2021highresolution} in which an area of an image is masked either with either noise or nothing at all. Additionally, in 2023 Deckers et. al~\cite{deckers2023manipulating} have shown the effectiveness of utilizing a common gradient-descent pipeline to optimize a prompt vector in order to maximize a score generated by passing the prompt vector to a generative image model and evaluating the generated image using a pretrained scoring model. This process may be used in a similar way for the research questions at hand.
 %For generating Markup code, already existing model architectures can be leveraged which provide ways to generate code solely from an image of a user interface. Such a process has been shown in 2021 by Toby Jia-Jun Li et al.~\cite{Li_2021}.
-The current state-of-the-art divides itself into three main parts: 
-(1) Segmentation of \ac{uis}
-(2) Efforts to optimize \ac{uis} using non-diffusion based approaches
-(3) Efforts to optimize \ac{uis} using diffusion based approaches
-\subsection{Segmentation of \ac{uis}}
+In the following, we divide the current state-of-the-art intro three main parts:
+(1) Segmentation of \acp{ui}
+(2) Efforts to optimize \acp{ui} and their layout using non-diffusion based approaches
+(3) Efforts to optimize \acp{ui} using diffusion based approaches
+\subsection{Segmentation of \acp{ui}}
+Multiple different approaches to segmenting user interfaces have been explored and proven to be viable. For the traning and evaluation part of this research, a pre-segmented dataset is useful. This kind of dataset has been presented in RICO \cite{10.1145/3126594.3126651}. Here, the segmentation is done via directly processing the semantics of the source code of \acp{ui}. Buttons, images and other elements are defined somewhere in the source of an app and through automatic agent based exploration of android apps, this segmentation is relatively straight forward.
+Purely optical based segmentation is also a thoroughly explored area. Approaches that leverage classic \ac{ocr} and combine it with modern object detection algorithms like YOLO \cite{Terven_2023} show promising results in segmenting user interfaces into their individual components \cite{10.1145/3368089.3409691}.
 
-\subsection{Efforts to optimize \ac{uis} using non-diffusion based approaches}
-Recent research has shown impressive advancements while not relying on diffusion based approaches like in 2022: Kong et al.~\cite{kong2022blt}
-which shows how a layout transformer model can be used to reliably generate missing attributes from their latent space, which is
-consisting of different elements, labeled with their category and their respective positioning on user interfaces.
-However such approaches often struggle with user inputs and constraints and are hard to control with fixed parameters, which include
-dictated positioning. A similar approach is presented in LayoutTransformer: Gupta et al.~\cite{gupta2021layouttransformer}
+\subsection{Efforts to optimize \acp{ui} using non-diffusion based approaches}
+While modern generative models often leverage diffusion based approaches, a number of non-diffusion based approaches also exist. Recent research has shown large advancements while not (only) relying on diffusion based approaches like in 2022: Kong et al.~\cite{kong2022blt} which shows how a layout transformer model can be used to reliably generate missing attributes from their latent space. This space is comprised of different elements, labeled with their category and their respective positioning on user interfaces.
+A similar approach called LayoutTransformer is presented in LayoutTransformer: Gupta et al.~\cite{gupta2021layouttransformer}. This approach leverages self-attention to assist with the generation and even allows for generation in the 3D Space.
+While these approaches may show impressive results in unguided layout generation, the topic of allowing the user to give high-level constraints such as predefined relationships between \ac{ui} elements (e.g. ensuring the company logo is always on top) remains challenging and not explored in the same depth.
 
-A different approach is the usage of a \ac{vae} like in Jiang et al.~\cite{Jiang_Sun_Zhu_Lou_Zhang_2022} which proposes segmenting
-the user interface into different regions first before then "filling out" these regions with other user interface segments in
-order to combat the challenges of high level relationships in user interfaces which are hard to process for these models.
-This research builds on Arroyo et al. ~\cite{arroyo2021variational} which initially proposed the usage of \ac{vae}s for layout 
-generation tasks. Such VAE approaches have also been explored in Xie et al.~\cite{xie2021canvasemb} and Patil et al.~\cite{patil2020read}.
+A different approach is the usage of a \ac{vae} like in Jiang et al.~\cite{Jiang_Sun_Zhu_Lou_Zhang_2022}. In their work, the authors propose a novel approach to segmenting the user interface into different regions. This approach involves "filling out" these regions with other user interface segments in order to combat the challenges of high-level relationships in user interfaces, which are difficult for these models to process. This research builds on Arroyo et al. ~\cite{arroyo2021variational} which initially proposed the usage of \acp{vae} for layout generation tasks. Such VAE approaches have also been explored in Xie et al.~\cite{xie2021canvasemb} and Patil et al.~\cite{patil2020read}.
 
-Still, non-VAE approaches also exist, leveraging advantages of Graph neural networks which allow for refinement of initial user
-controlled relationship definement like in  H.-Y. Lee et al. ~\cite{lee2020neural}.
+Still, non-VAE approaches also exist, e.g. leveraging advantages of Graph neural networks which allow for refinement of initial user controlled relationship definement like in  H.-Y. Lee et al. ~\cite{lee2020neural}.
  
 \subsection{Efforts to optimize \ac{uis} using diffusion based approaches}
-While not strictly related to \ac{uis}, research has already been done in the field of metric based optimization for Pix2Pix
-Diffusion models like in Deckers et al. \cite{deckers2023manipulating} which shows that a simple gradient descent pipeline with a
-classifier at the end can be used to optimize a prompt embedding which is passed to a stable diffusion model.
+Although not directly related to \ac{uis}, research has already been conducted in the field of metric-based optimization for Pix2Pix approaches. These approaches explore modifying images using diffusion models, effectively using an already existing image as the starting point in the latent space.
+Multiple research efforts have demonstrated that a simple gradient descent pipeline with a classifier at the end can optimize a prompt embedding that is passed to a stable diffusion model, as shown in their diffusion models. \cite{deckers2023manipulating,zhan2024capabilityaware}
 
-Next to that is the different approach of not relying on Pix2Pix models but using a different autoencoder to get to the latent 
-space from the \ac{uis}. Though not directly related to the actual diffusion, Deka et al.~\cite{10.1145/3126594.3126651} already
-showcased an AutoEncoder which reduces the dimensions of a user interface layout to a 64-dimensional vector which can later
-be used to retrieve the layout representation again. However, this lacks closing the gap between a generated layout and the
-finished user interface, which is a vital part of this research. Still, this approach might provide useful insights if
-it were to be possible to use this AutoEncoder directly in a diffusion model.
+Another approach is to not rely on Pix2Pix models, but instead use a different autoencoder to transform the \acp{ui} into the latent space.
+
+Deka et al.~\cite{10.1145/3126594.3126651} already showcased an autoencoder which reduces the dimensions of a user interface layout to a 64-dimensional vector which can later be used to retrieve the layout representation again. While they did not add diffusion to their latent space, it still is a promising approach. To close the gap from this reasearch to a finished pipeline, like it is the goal of this thesis, the component which transforms the generated layout (e.g. a picture) into a real \ac{ui} (e.g. markup) is however still missing.
+ Nevertheless, this approach could provide useful insights if be possible to use this autoencoder directly in a diffusion model.
+
+However, all of the approaches presented that operate on user interfaces do not use a true aesthetic predictor as their metric, but rather more technical metrics that measure details such as overlap on design components.
 
 
 \section{Proposed Approach}
 \label{sec:approach}
-As all of the mentioned research questions are somewhat related to the overall goal of this research, which is to optimize
+As the overall goal of this research is to optimize
 perceived aesthetics, a clear way to measure this metric is needed. As all of the approaches will rely on the usage of a
-common gradient descent pipeline on one way or another, this metric needs to measured in a way which doesn't break any 
-autograd graphs. For simplicity, the same model will be used for all of the different approaches, which is the one presented in
-20203: Leiva et al. \cite{Leiva2023}. However, a slight modification will be necessary as the provided pre-trained model is
+common gradient descent pipeline on one way or another, this metric needs to measured in a way which is differentiable. For simplicity, the same model will be used for all of the different approaches, which is the one presented in
+20203: Leiva et al. \cite{Leiva2023}. 
+% Excluded from expose since too technical:
+\iffalse
+However, a slight modification will be necessary as the provided pre-trained model is
 using the tensorflow \footnote{\url{https://www.tensorflow.org}} framework and therefore not compatible with the torch \footnote{\url{https://pytorch.org}}
 autograd mechanisms used in this research. Thus, the model will be retrained on the same data using the same presented model architecture
 which should yield similar results to the ones presented in the research.
+\fi
 
-\newcommand{\MTCell}[1]{\parbox[t]{0.31\linewidth}{#1}}
-\newcommand{\MTCellL}[1]{\parbox[t]{0.31\linewidth}{\raggedright #1}}
-\begin{table}[h]
-\caption{Overview of Proposed Approach}
-\label{tab:proposed_approach}
-\begin{flushleft}
-\begin{tabular}{@{}lll@{}}
-\multicolumn{3}{c}{\textbf{Research Questions \& Related Study Phase}}                                           \\ \midrule
-\MTCell{\centering{RQ 1:}} & \MTCell{\centering{RQ 2:}} & \MTCell{\centering{RQ 3:}} \\
-\MTCellL{Requirements Engineering} & \MTCellL{Data Visualization} & \MTCellL{Development \& Evaluation} \\
-\\[-.5em]
+The new research in this work is seeing the aesthetics predictor as part of the generation instead of using technical metrics to assess the goodness of created user interfaces after the creation has already been finished.
 
-\multicolumn{3}{c}{\textbf{Tasks}}                                                 \\ \midrule
-\MTCellL{$\circ$ Process Analysis\\ $\circ$ Stakeholder Identification\\ $\circ$ Requirements Elicitation\\ $\circ$ Use Cases\\ $\circ$ KPI\\ $\circ$ Relationship to \ac{ux} Measures} &
-\MTCellL{$\circ$ Visualization design\\ $\circ$ Use Case Mapping\\ $\circ$ Data Dependencies} &
-\MTCellL{$\circ$ Join visualizations and Process\\ $\circ$ App Specifications \& Prototype\\ $\circ$ Initial Evaluation\\ $\circ$ Iterative app development\\ $\circ$ Final evaluation \& analysis} \\
-\\[-.5em]
+% RQ1 How can \ac{uis} be segmented in a way such that the segmentation can be optimized and later reassembled?
+% RQ2 How does an optimal latent space in which the User Interface Layout can be represented look? How can this space be used to optimize \ac{uis} after they have been segmented in order to maximize perceived aesthetic, measured by a pretrained classifier?
+% RQ3 How can (accidental) adversarial attacks by the optimizer against the Aesthetic Predictor be avoided?
 
-\multicolumn{3}{c}{\textbf{Expected Results}}                                      \\ \midrule
-\MTCellL{$\circ$ Process Description\\ $\circ$ Stakeholder \& Requirements Cluster\\ $\circ$ Prioritized Use Cases\\ $\circ$ Information Needs} &
-\MTCellL{$\circ$ Data pipeline (description)\\ $\circ$ Visualizations\\ $\circ$ Initial designs} &
-\MTCellL{$\circ$ Final app\\ $\circ$ Concrete Use Cases\\ $\circ$ Evaluation Results} \\
-\\[-.5em]
-\bottomrule
-\end{tabular}
-\end{flushleft}
-\end{table}
+\newcommand{\MTCell}[1]{\parbox[t]{0.33\linewidth}{#1}}
+\newcommand{\MTCellL}[1]{\parbox[t]{0.33\linewidth}{\raggedright #1}}
+\begin{table}[h!]
+  \caption{Overview of the Proposed Approach}
+  \label{tab:proposed_approach}
+  \begin{flushleft}
+  \begin{tabular}{@{}lll@{}}
+  \multicolumn{3}{c}{\textbf{Research Questions \& Related Study Phase}}                                           \\ \midrule
+  \MTCell{\centering{RQ 1:}} & \MTCell{\centering{RQ 2:}} & \MTCell{\centering{RQ 3:}}  \\
+  \MTCellL{Segmentation} & \MTCellL{Latent space}  & \MTCellL{Adversarial attacks}   \\
+  \\[-.5em]
+  
+  \multicolumn{3}{c}{\textbf{Tasks}}                                                 \\ \midrule
+  \MTCellL{$\circ$ Assess state-of-the-art\\ $\circ$ Evaluate necessary changes \& adaptations} &
+  \MTCellL{$\circ$ Comparison of  common gradient-descent pipeline with naive positioning vector as latent space to SOTA approaches} &
+  \MTCellL{$\circ$ Evaluation if these (accidental) attacks do in fact prove to be a challenge \\ $\circ$ Exploration of different mitigation approaches} \\
+  \\[-.5em]
+  
+  \multicolumn{3}{c}{\textbf{Expected Results}}                                      \\ \midrule
+  \MTCellL{$\circ$ Assessment of "Fitness" of SOTA\\ $\circ$ Finished Segmentation pipeline able to be differentiated in reassembling phase w.r.t. positioning vector} &
+  \MTCellL{$\circ$ usable decision for following quesitons} &
+  \MTCellL{$\circ$ Selection of specific mitigation tactic if applicable} \\
+  \\[-.5em]
+
+% RQ 4: Do Diffusion Models provide advantages, either via Pix2Pix optimization or via a different latent space which represents the UI
+% RQ 5: How can all of these different approaches be constrained with user supplied input?
+% RQ 6: How can one of these approaches be packaged and supplied to a potential user in an end-to-end pipeline?
+
+  \multicolumn{3}{c}{\textbf{Research Questions \& Related Study Phase}}                                           \\ \midrule
+  \MTCell{\centering{RQ 4:}} & \MTCell{\centering{RQ 5:}} & \MTCell{\centering{RQ 6:}}  \\
+  \MTCellL{Introduction \\ of diffusion} & \MTCellL{User Input constraints}  & \MTCellL{Usable e2e pipe}   \\
+  \\[-.5em]
+  
+  \multicolumn{3}{c}{\textbf{Tasks}}                                                 \\ \midrule
+  \MTCellL{$\circ$ Assess SOTA layout diffusion approaches \\ $\circ$ Assess Pix2Pix with common gradient descent pipeline} &
+  \MTCellL{$\circ$ Exploration of different constraining approaches} &
+  \MTCellL{$\circ$ Incorporation of prior results into usable product} \\
+  \\[-.5em]
+  
+  \multicolumn{3}{c}{\textbf{Expected Results}}                                      \\ \midrule
+  \MTCellL{$\circ$ Evaluation of diffusion based approaches \\ $\circ$ Pivot to explored approaches in case of superiority} &
+  \MTCellL{$\circ$ Incorporation in prior results if applicable} &
+  \MTCellL{$\circ$ Figma plugin or \\ $\circ$ demo app} \\
+  \\[-.5em]
+  \bottomrule
+
+
+  \end{tabular}
+  \end{flushleft}
+  \end{table}
 
 \subsection{Research Question 1}
 %To be able to use Diffusion models to generate visually pleasing user interfaces, it first needs to be established how off-the-shelf pretrained models perform at this task. It is expected that the performance won't be optimal, mainly due to most of the models like StableDiffusion ~\cite{rombach2021highresolution} are mostly trained on the Laion5B ~\cite{schuhmann2022laion5b} dataset with does not have a specific focus on user interfaces. To accomplish statisfying results a finetuning or custom training needs to be performed. This requires large-enough datasets which fit the challenge at hand. 
@@ -203,20 +241,16 @@ which should yield similar results to the ones presented in the research.
 %
 %An additional component to the optimization pipeline is a model grading the visual aesthetic of a user interface. This model can then be used by a AutoGrad Gradient Descent pipeline to directly optimize a prompt vector. The model would need to be trained on a large enough dataset where users have been interrogated for their perceived aesthetic of user interfaces. Such a model has been presented in the  2022 study: Luis A. Leiva et al.~\cite{Leiva2023} where different model architectures were evaluated for their effectiveness in predicting perceived aesthetic.
 %As the model is implemented in tensorflow, a portation of it to pyTorch would be necessary to leverage the AutoGrad functionality in order to optimize the prompt vector in a full pipeline, as most diffusion models are implemented in PyTorch.
-Past Research like in Biplab Deka et. al: Rico \cite{10.1145/3126594.3126651} has shown that User Interface Segmentation is a task which is manageable by state of the art algorithms. It has been proven that optical segmentation into Text and Non-Text elements (by mere masking of the affected regions) can be used to train an AutoEncoder architecture which reliably reduces the dimension 
-of the information in a user interface. As this research is exploring a similar question (transforming a user interface in a latent-like-space), a similar approach might provide favorable results for this task.
-It remains to be shown how significant the effects of different segmentation approaches are on the overall goal. The maturity and reliability of models like the one presented in the mentioned paper suggests that this effect may be minimal.
-
+Past Research like in \cite{10.1145/3126594.3126651} has shown that \ac{ui} Segmentation is a task which is manageable by state of the art algorithms. It has been proven that optical segmentation into Text and Non-Text elements (by mere masking of the affected regions) can be used to train an AutoEncoder architecture which reliably reduces the dimension 
+of the information in a user interface. As this research is exploring a similar question (transforming a user interface into a latent space), a similar approach might provide good results for this task.
+It remains to be shown how significant the effects of different segmentation approaches are on the final pipeline. The maturity and reliability of models like the one presented in the mentioned paper suggests that this effect may be minimal.
 
 \subsection{Research Question 2}
-As previously described, the main challenge in this domain will be finding an entire pipeline, which includes a latent space, a
-function which retrieves the user interface out of this latent space and a predictor which determines the aesthetics for this
-retrieved and modified user interface. One such space might just be a vector of coordinates where the segments are placed on
-the user interface. 
+As previously described, the main challenge in this domain will be developing an entire pipeline, that includes a latent space, a function which retrieves the user interface out of this latent space and a predictor that determines the aesthetics for this retrieved and modified user interface. One such space might just be a vector of coordinates where the segments are placed on the user interface. 
 
-Once such a space and pipeline has been found, it may be trivial to optimize the representation of the user interface by utilizing
+
+Once such a space and pipeline has been found, the representation of the user interface can be improved by utilizing
 common gradient descent patterns provided by major machine learning frameworks, provided that the whole pipeline actually converges.
-
 
 % As 2024 Jian Chen et al. ~\cite{chen2024aligned} has shown, masking the input for a diffusion model can prove to be a viable solution to restrict the output space of a generational model in order to keep user defined boundaries. However, it remains to be proven if such an approach is viable for Text2Img and Img2Img models.
 % These pipelines are often restricted by a process referred to as Inpainting which obstructs parts if the input image, which results in the latent space missing information which needs to be inferred by the model. However, this is usually a different optimization task and a special dataset would need to be created for this task.
@@ -228,42 +262,29 @@ common gradient descent patterns provided by major machine learning frameworks, 
 %
 %
 \subsection{Research Question 3}
-While this part of the research is arguably the most important one, it might also prove to be the most complex one.
-Keeping the pipeline from becoming too volatile or quickly "learning" how to exploit the aesthetics predictor and thus
-creating an adversarial task is a complex task. These exploits might lead to undesirable results in which user interfaces
-might show extreme changes for no apparent reason which might lead to a higher predict aesthetic but, are do in fact not show
-the same favorability during interrogation through humans.
+This part of the research is arguably the most important one. Keeping the pipeline from becoming too volatile or quickly ``learning" how to exploit the aesthetics predictor and thus creating an adversarial attack is a complex task. These exploits might lead to undesirable results in which user interfaces might show extreme or slim changes for no apparent reason which might lead to a higher predicted aesthetic score but, are do in fact not show the same favorability during interrogation through humans. Adversarial attacks (also known as adversarial examples) have long been documented, especially in regards to humans being unable to detect them. \cite{G_pfert_2020}
 
-Initially this might be mitigated by optimizing the predictor through a bigger and more complex model architecture and 
-extending the datasets used for training it. However, this might only alleviate potential issues to a certain extent
-at which other techniques have to be explored such as restricting the latent space and adding a regularization or penalty on 
-extreme changes.
+The research area of preventing adversarial attacks has been thoroughly studied due to the ubiquitous nature of classifying neural networks. \cite{9466420}. 
+% Initially this might be mitigated by optimizing the predictor through a bigger and more complex model architecture and extending the datasets used for training it. However, this might only alleviate potential issues to a certain extent at which other techniques have to be explored such as restricting the latent space and adding a regularization or penalty on extreme changes.
+
 
 \subsection{Research Question 4}
 % Do Diffusion Models provide advantages, either via Pix2Pix optimization or via a different latent space which represents the \ac{ui}
-This research question can be broken up into two seperate tasks. While one, once again revolves around the task of finding
-a suitable latent space in which the user interface can be projected, the other one assumes that acceptable results can
-be achieved by solely relying on Pix2Pix approches like StableDiffusion~\cite{rombach2021highresolution}. This would most
-definetely involve finetuning the AutoEncoder in the StableDiffusion model to adapt to \ac{uis}. However this might prove
-to be a challenging approach as these models are notoriously hard to control, which has evolved into a seperate research field
-called prompt engineering. It might even be unrealistic to assume that Pix2Pix optimization can even produce something remotely
-resembling a user interface, disregarding aesthetics.
+This research question can be divided into two distinct tasks. The first task involves identifying an appropriate latent space in which the user interface can be projected. The second task assumes that satisfactory results can be achieved by solely relying on Pix2Pix approaches, such as StableDiffusion.~\cite{rombach2021highresolution}. This would undoubtedly necessitate the finetuning of the AutoEncoder in the StableDiffusion model to adapt to UIs. \cite{ruiz2023dreambooth} However, this approach may prove challenging, as these models are notoriously difficult to control, which has led to the emergence of a distinct research field, prompt engineering.. \cite{gu2023systematic} It is perhaps overly optimistic to suggest that Pix2Pix optimization can be used to create a user interface that is both functional and aesthetically pleasing.
 
-Thus, the first approach, finding a different latent space could show improved results. For this, some research has already
-been done, like in 2023: Hui et al. \cite{hui2023unifying} where latent space effectively only holds information about the 
-layout of a user interface.
+Thus, the first approach, (finding a latent space that has been adapted to the \ac{ui} usecase) could show improved results. For this, some research has already been done, for example by 2023: Hui et al. \cite{hui2023unifying} who designed the latent space such that it only holds information about the layout of a user interface.
 
 \subsection{Research Question 5}
 %How can all of these different approaches be constrained with user supplied input?
-Constraining the generated layouts and \ac{uis} has been the subject of multiple research efforts \cite{lee2020neural}. 
-While most of these efforts rely on giving the constraints at the start of the pipeline, e.g. developing relationships and
-going from there on to the user interfaces, another approach could be to penalize a model/pipeline for a undesirable results
-which may include user defined constraints. It would then be entirely up to the model to grasp these constraints and work
-them into the predictions.
+Constraining the generated layouts and \ac{uis} has been the subject of past research \cite{lee2020neural}.  While most of these efforts rely on giving the constraints at the start of the pipeline, e.g. developing relationships and going from there on to the user interfaces, another approach could be to penalize a model/pipeline for a undesirable results which may include user defined constraints. It would then be entirely up to the model to grasp these constraints and work them into the predictions.
 
 \subsection{Research Question 6}
 %How can one of these approaches be packaged and supplied to a potential user in an end-to-end pipeline?
+As soon as a viable solution for the described problem has been found, integrating this solution in an appealing way for potential users is an additional challenge as the question arises how a finished user interface, which is still in a graphic representation at this stage can be transformed back out of the latent space.
 
+As the main objective is to optimise existing user interfaces, the main challenge will be to transform such an existing user interface into a representation which can be used by the pipeline and, arguably more important, retrieving the user interface back from the pipeline. One such "starting point" might be rendered markup code in a tool like figma. For a segmentation and rearrangement task, this might mean the association between rendered elements and the respective code parts which produce these segments. For this taks, the final extraction stage would have to have an understanding of how layering and ordering works in these kinds of markup languages.
+
+To measure the results of this finished pipeline, already finished user interfaces could be rearranged in a way that is subjectively not aesthetic. The modified \ac{ui} can be fed into the pipeline and differences between the original user interface and what the pipeline came up with can be used to grade the performance. Of course, this relies on the assumption that the original \ac{ui} was already achieving a relatively high aesthetic score.
 
 \pagebreak
 \section{Structure}
@@ -281,31 +302,25 @@ Following the described approach, the structure shown in \cref{fig:Structure} is
 		\end{enumerate}
 		\item Background
 		\begin{enumerate}[label*=\arabic*]
-			\item User Experience
-			\item Usability Evaluation
-			\item In-Vehicle Information Systems
-			\item Requirements Engineering
-			\item Creativity Techniques - Design Thinking
+      \item Current approaches \& challenges
 		\end{enumerate}
 		\item State-of-the-Art and Related Work
 		\begin{enumerate}[label*=\arabic*]
-			\item User Experience Evaluation
-			\item Data-Analysis and Visualization
-			\item Usages in the Automotive Domain
-			\item Comparison of existing Approaches
+      \item Non-Diffusion based approaches
+			\item Diffusion based approaches
+			\item Current shortcomings
 		\end{enumerate}
 		\item Proposed Method and Implementation
 		\begin{enumerate}[label*=\arabic*]
-			\item Requirements Engineering
-			\item Data Visualizations
-			\item Final Application
+      \item Implementation of described approaches
+      \item 
+      \item Final Application
 		\end{enumerate}	
 		\item Evaluation
 		\begin{enumerate}[label*=\arabic*]
 			\item Evaluation Method
+			\item Comparison to prior work
 			\item Use Cases
-			\item Interview Guidelines
-			\item Questionnaires
 		\end{enumerate}
 		\item Results
 		\item Discussion
