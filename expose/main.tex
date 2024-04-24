@@ -57,46 +57,19 @@ the website or the mobile app~\cite{effects_of_website_designs}. Currently, desi
 new \ac{ui} is often a task for multiple teams with different professions, 
 like graphic design and software engineering. 
 % #####################
-While modern project management strategies
- like Scrum can alleviate the difficulties introduced by aligning and communicating 
- stakeholder and user interests with the final product, they still rely heavily on good
- communication and the abundancy of time and therefore dont fully alleviate the challenges associated with \ac{ui} design. 
+% While modern project management strategies like Scrum can alleviate the difficulties introduced by aligning and communicating  stakeholder and user interests with the final product, they still rely heavily on good communication and the abundancy of time and therefore dont fully alleviate the challenges associated with \ac{ui} design. 
  % #####################
- Automating the task of creating \acp{ui} or provding assistance 
- via automatic algorithms is therefore a worthwile subject as an "end-to-end" process 
- of creating user-interfaces or at least optimising existing \acp{ui} can reduce time 
-and effort. 
+ Automating the task of creating \acp{ui} or providing assistance through automatic algorithms is therefore a worthwhile topic, as an "end-to-end" process of creating \acp{ui}, or at least optimizing existing ones, can reduce time and effort.
 
-Layout generation tasks describe the challenge of aligning different elements and components
-of user interfaces as well as controlling other parameters like font, font size and color
-in a visually pleasing way. While this task is evidently sufficiently difficult
-for humans, assigning this task to algorithms proves to be even more difficult as the challenge
-of defining what is considered visually pleasing for humans is not straight forward.
+One of the most important tasks in the \ac{ui} design process is the task of layouting. Layout generation tasks describe the challenge of aligning different elements and components of user interfaces as well as controlling other parameters like font, font size and color in a visually pleasing way. While this task is evidently sufficiently difficult for humans, assigning this task to algorithms proves to be even more difficult as the challenge of defining what is considered visually pleasing for humans is not straight forward. \cite{LAVIE2004269}
 
 \section{Problem Description}
 % What are the research questions?
-
-
-% NNNNNEEEEEEEWWWWWWW
-
-The objective of this research is to develop a comprehensive methodology that can be utilized by a potential user to input an image of an existing UI and potentially provide additional instructions. This automated pipeline would be capable of segmenting the UI into its components and rearranging them in a more optimal or visually appealing manner. This segmentation process can be conceptualized as a transformation or mapping of the UI into a distinct space, which might be referred to as a latent space. 
-
-
-% OOOOOLLLLLLLDDDDDDDD
-The goal of this research is to provide a potential user with a fully usable pipeline in
- which they can input an image of an already existing \ac{ui} and potentially provide 
- additional instructions. This automated pipeline would be able to segment the \ac{ui} into
- its components and rearrange them in a better or visually more pleasing way. This segmentation
- process thus functions as a transformation or mapping of the \ac{ui} into a different space,
- which might even be called a latent space. An algorithm or model can operate in this space
- and retrieve feedback from a model, pretrained on a dataset in which users have been interrogated
- for their perceived aesthetics of user interfaces. It remains to be shown, if this classifier
- model can predict directly from this latent space or if the user interface has to be transformed 
- out of this latent space again first (diffusion). Clearly, this transformation proves to be a an
- additional challenge as well as deciding the size and dimension of the latent space. This reasearch
- aims at exploring different approaches as to how these latent spaces can look with a focus to them
- being able to be used in a pipeline from the latent space to an aesthetics predictor without
- breaking autograd vectors in order to leverage common gradient-descent patterns for this task.
+The objective of this research is to develop a comprehensive methodology that can be utilized by a potential user to input an image of an existing \ac{ui} and provide additional instructions. This automated pipeline should be capable of segmenting the \ac{ui} into its components and rearranging them in a more visually appealing manner. This segmentation process can be conceptualized as a transformation or mapping of the \ac{ui} elements into a distinct space, which might be referred to as a latent space. An algorithm operates in this space and retrieves feedback from a model, which predicts and assesses visual appearance. This model has been pretrained on a dataset in which users have been interrogates for their perceived aesthetics of user interfaces. 
+ 
+ It remains to be shown, if this classifier model can predict directly from this latent space or if the user interface has to be transformed out of this latent space again first. 
+ Clearly, this transformation proves to be a an additional challenge as well as deciding the size and dimension of the latent space. This reasearch aims at exploring different approaches as to how these latent spaces can look with a focus on them being able to be used in a pipeline from the latent space to an aesthetics predictor without breaking autograd vectors in order to leverage common gradient-descent patterns for this task.
+ As past research has shown, having automated models that try to optimise a function can lead to accidental adversarial attacks, also known as ``Reward Hacking``. \cite{NEURIPS2022_3d719fee} It is probable that a similar issue will arise in this research project. Therefore, it is necessary to devise a strategy to circumvent this problem.
 
  %could then  This pipeline should output an optimised version of the 
  %provided user interface. The process may be enriched with automatically generating 
@@ -286,6 +259,42 @@ As the main objective is to optimise existing user interfaces, the main challeng
 
 To measure the results of this finished pipeline, already finished user interfaces could be rearranged in a way that is subjectively not aesthetic. The modified \ac{ui} can be fed into the pipeline and differences between the original user interface and what the pipeline came up with can be used to grade the performance. Of course, this relies on the assumption that the original \ac{ui} was already achieving a relatively high aesthetic score.
 
+\section{Proposed Experiments}
+The following section presents the proposed experiments designed to address the aforementioned questions. 
+\subsubsection{Experiment 1}
+\begin{enumerate}
+    \item Use a state of the art dataset and segmenting technique to segment a picture of a user interface into its elements
+    \item Store coordinates of the individual elements in the user interface in a vector ($\to$ latent space)
+    \item Reassemble the user interface according to the coordinates
+    \item Pass the user interface in a state of the art aesthetics predictor (\cite{Leiva2023})
+    \item Ensure that the resulting score is differentiable w.r.t to the coordinate vector
+\end{enumerate}
+\subsubsection{Experiment 2}
+\begin{enumerate}
+    \item Extend the Setup from Exp. 1 to include an optimiser which tries to increase the score by optimising the coordinate vector
+\end{enumerate}
+\subsubsection{Experiment 3}
+\begin{enumerate}
+    \item Apply the process from Exp. 1 to a meaningful number of user interfaces to check for potential issues, such as the described accidental adversarial attacks
+\end{enumerate}
+\subsubsection{Experiment 4}
+\begin{enumerate}
+    \item Add additional parameters to the latent space which can be optimised, such as
+    \begin{itemize}
+        \item Background color, size of the elements
+    \end{itemize}
+\end{enumerate}
+\subsubsection{Experiment 5}
+\begin{enumerate}
+    \item Package Exp. 1-4 into a Proof of concept pipeline, which just receives a user interface and outputs a new, optimised, user interface
+\end{enumerate}
+\subsubsection{Experiment 6}
+\begin{enumerate}
+    \item Fine-tune SD Autoencoder for User interfaces
+    \item Use the same predictor as in Exp. 1 to optimise an existing user interface using a Pix2Pix approach
+    \item Compare the results to the ones from Exp. 1-4
+\end{enumerate}
+\
 \pagebreak
 \section{Structure}
 \label{sec:structure}
