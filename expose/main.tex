@@ -83,7 +83,7 @@ To solve these questions the following research questions will be answered:
   \item How can \acp{ui} be segmented in a way such that the layout can be optimized and reassembled?
   \item What characteristics should a suitable latent space possess in order to be utilized for the projection of user interfaces (UIs), which can then be optimized and graded by an automatic classifier?
   \item How can (accidental) adversarial attacks by the optimizer against the Aesthetic Predictor be avoided?
-  \item Do Diffusion Models provide advantages, either via Pix2Pix optimization or via a different latent space which represents the \ac{ui}
+  \item Do Diffusion Models provide advantages, either via Pix2Pix optimization or via a different latent space which represents the \ac{ui}?
   \item How can the generation by all of the different approaches be constrained with user supplied input on high-level positional relationship between \ac{ui} elements?
   % ######### May need to get excluded for now as no way to grade without usability study 
   \item How can a finished tool look which supports a potential user in a meaningful way during the layouting and design process?
@@ -263,7 +263,7 @@ To measure the results of this finished pipeline, already finished user interfac
 The following section presents the proposed experiments designed to address the aforementioned questions. 
 \subsubsection{Experiment 1}
 \begin{enumerate}
-    \item Use a state of the art dataset and segmenting technique to segment a picture of a user interface into its elements
+    \item Use a state of the art \ac{ui} dataset containing screenshots like Rico~\cite{10.1145/3126594.3126651} and segmenting technique to segment a picture of a user interface into its elements
     \item Store coordinates of the individual elements in the user interface in a vector ($\to$ latent space)
     \item Reassemble the user interface according to the coordinates
     \item Pass the user interface in a state of the art aesthetics predictor (\cite{Leiva2023})
@@ -290,7 +290,7 @@ The following section presents the proposed experiments designed to address the 
 \end{enumerate}
 \subsubsection{Experiment 6}
 \begin{enumerate}
-    \item Fine-tune SD Autoencoder for User interfaces
+    \item Fine-tune an Autoencoder to be part of a Diffusion model/pipeline for User interfaces
     \item Use the same predictor as in Exp. 1 to optimise an existing user interface using a Pix2Pix approach
     \item Compare the results to the ones from Exp. 1-4
 \end{enumerate}
@@ -337,13 +337,9 @@ Following the described approach, the structure shown in \cref{fig:Structure} is
 			\item Threats to Validity
 			\item Future Work
 		\end{enumerate}
-		
-		
 	\end{enumerate}
 	\label{fig:Structure}
 \end{figure}
-
-
 \pagebreak
 %bib stuff
 \addtocontents{toc}{\protect\vspace{\beforebibskip}}
