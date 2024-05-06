@@ -7,3 +7,11 @@ venv/
 **/*.synctex.gz
 **/*.blg
 **/*.bbl
+.ipynb_checkpoints/
+.DS_Store
+__pycache__/
+ModelingHowDifferentUserGroups_model/
+combined/
+*.zip
+*.tar.gz
+ui_layout_vectors/
