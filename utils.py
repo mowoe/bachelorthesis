@@ -1,6 +1,7 @@
 import numpy as np
 import torch
 from huggingface_hub import hf_hub_download
+import random
 
 # Utility functions to read dataset
 
@@ -92,3 +93,28 @@ class AestheticPredictor(torch.nn.Module):
         x = self.dropout(x)
         x = self.fc2(x)
         return x
+
+
+
+def get_random_initial_position(segment, canvas_size, original_position, seed=1):
+    # random.seed(seed)
+
+    
+    # Theta consists of 6 values, 4 of which we have to calculate.
+    x_ratio = canvas_size[0] / segment.size[0]
+    y_ratio = canvas_size[1] / segment.size[1]
+    
+    mapped_x_position = random.uniform(-(x_ratio-1), (x_ratio-1))
+    mapped_y_position = random.uniform(-(y_ratio-1), (y_ratio-1))
+
+    print(f"Original would have been: {calculate_initial_theta(segment,canvas_size,original_position)}")
+    print(f"""Now is {np.array([ 
+        [x_ratio, 0.0    , mapped_x_position],
+        [0.0    , y_ratio, mapped_y_position]
+    ])}""")
+
+    
+    return np.array([
+        [x_ratio, 0.0    , mapped_x_position],
+        [0.0    , y_ratio, mapped_y_position]
+    ])
