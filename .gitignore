@@ -15,3 +15,5 @@ combined/
 *.zip
 *.tar.gz
 ui_layout_vectors/
+*.png
+*.gif
