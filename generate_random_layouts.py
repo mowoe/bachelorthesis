@@ -119,6 +119,7 @@ def process_file(file):
     logger.info("Reassembling original image...")
     image = get_image_from_coordinates(coordinates, reduced_segments, im.size)
     image.save(join(OUTPUT_DIR, f"real/{file.split('.')[0]}_original.jpg"))
+    logger.info(f"Saved image to real/{file.split('.')[0]}_original.jpg")
 
     logger.info("Reassembling 4 random images...")
     for x in range(4):
