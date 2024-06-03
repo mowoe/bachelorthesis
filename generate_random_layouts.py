@@ -23,8 +23,10 @@ from utils import (
     stack_alpha_aware,
 )
 
-RICO_COMBINED_LOCATION = "/Volumes/data/datasets/combined"
-OUTPUT_DIR = "/Volumes/data/datasets/real_and_fake_rico_layouts/train"
+# RICO_COMBINED_LOCATION = "/Volumes/data/datasets/combined"
+RICO_COMBINED_LOCATION = "/mnt/ceph/storage/data-tmp/current/sz46wone/combined"
+#OUTPUT_DIR = "/Volumes/data/datasets/real_and_fake_rico_layouts/train"
+OUTPUT_DIR = "/mnt/ceph/storage/data-tmp/current/sz46wone/real_and_fake_rico_layouts/train"
 
 Path(OUTPUT_DIR).mkdir(parents=True, exist_ok=True)
 Path(join(OUTPUT_DIR,"real")).mkdir(parents=True, exist_ok=True)
@@ -94,13 +96,18 @@ def process_file(file):
     im = Image.open(join(RICO_COMBINED_LOCATION, file))
     im = im.convert("RGBA")
     im = im.resize((1440, 2560), Image.Resampling.LANCZOS)
-    with open(join(RICO_COMBINED_LOCATION, file).replace("jpg", "json"), "r") as f:
-        image_json = json.load(f)
+    try:
+        with open(join(RICO_COMBINED_LOCATION, file).replace("jpg", "json"), "r") as f:
+            image_json = json.load(f)
+    except FileNotFoundError:
+        logger.warning(f"{file.replace('jpg', 'json')} not available, probably not unpacked yet...")
+        return
 
     reduced_segments = [
         s
         for s in segment(im, image_json)
-        if (prod(s[0].size) < 0.80 * prod(im.size)) and (prod(s[0].size) > 1)
+        if (prod(s[0].size) > 1)
+        #if (prod(s[0].size) < 0.80 * prod(im.size)) and (prod(s[0].size) > 1)
     ]
 
     initial_vector = []
