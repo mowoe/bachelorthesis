@@ -24,9 +24,10 @@ from utils import (
 )
 
 # RICO_COMBINED_LOCATION = "/Volumes/data/datasets/combined"
-RICO_COMBINED_LOCATION = "/mnt/ceph/storage/data-tmp/current/sz46wone/combined"
+# RICO_COMBINED_LOCATION = "/mnt/ceph/storage/data-tmp/current/sz46wone/combined"
+RICO_COMBINED_LOCATION = "/var/tmp/sz46wone/combined/combined"
 #OUTPUT_DIR = "/Volumes/data/datasets/real_and_fake_rico_layouts/train"
-OUTPUT_DIR = "/mnt/ceph/storage/data-tmp/current/sz46wone/real_and_fake_rico_layouts/train"
+OUTPUT_DIR = "/var/tmp/sz46wone/real_and_fake_rico_layouts/train"
 
 Path(OUTPUT_DIR).mkdir(parents=True, exist_ok=True)
 Path(join(OUTPUT_DIR,"real")).mkdir(parents=True, exist_ok=True)
@@ -132,7 +133,7 @@ def process_file(file):
         image.save(join(OUTPUT_DIR, f"fake/{file.split('.')[0]}_random_{x}.jpg"))
 
 def run(files):
-    with Pool() as pool:
+    with Pool(4) as pool:
         list(tqdm(pool.imap(process_file, files), total=len(files)))
 
 if __name__ == "__main__":
