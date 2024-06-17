@@ -4,6 +4,9 @@ from huggingface_hub import hf_hub_download
 import random
 import torchvision.transforms as T
 from torchvision import datasets, transforms
+from loguru import logger
+from PIL import Image
+
 
 # Utility functions to read dataset
 def get_all_bounding_boxes_and_ids(item):
@@ -46,7 +49,6 @@ def segment(image: np.ndarray, rico_json: dict)->[list,list]:
             segments.append(cropped_image)
             coordinates.append((box[0],box[1]))
     return list(zip(segments,coordinates))
-
 
 def calculate_initial_theta(segment, canvas_size, original_position):
     # Theta consists of 6 values, 4 of which we have to calculate.
@@ -156,6 +158,113 @@ def get_random_initial_position(segment, canvas_size, original_position, seed=1,
         [x_ratio, 0.0    , mapped_x_position],
         [0.0    , y_ratio, mapped_y_position]
     ])
+
+
+def get_all_clickable_resources(item, should_be_clickable):
+    if item is None:
+        return []
+    all_boxes = []
+    if "bounds" in item.keys() and "resource-id" in item.keys() and "clickable" in item.keys() and item["clickable"]==should_be_clickable and item["visible-to-user"]:
+        all_boxes.append((item["bounds"],item["resource-id"]))
+    if "children" in item.keys():
+        for child in item["children"]:
+            for box in get_all_clickable_resources(child,should_be_clickable):
+                all_boxes.append(box)
+    return all_boxes
+
+def get_all_bounding_boxes_with_clickable(item, should_be_clickable):
+    bboxes = get_all_clickable_resources(item,should_be_clickable)
+    reduced_bboxes = []
+    already_seen_ids = []
+    for box,r_id in bboxes:
+        if r_id not in already_seen_ids:
+            reduced_bboxes.append(box)
+            already_seen_ids.append(r_id)
+    return reduced_bboxes
+
+def is_overlapping(bbox1, bbox2):
+    """
+    This function checks if the second bounding box overlaps the first one for more than 90% of its space.
+    
+    Args:
+      bbox1: A list of four integers representing the first bounding box (x1, y1, x2, y2).
+      bbox2: A list of four integers representing the second bounding box (x1, y1, x2, y2).
+    
+    Returns:
+      True if the second bounding box overlaps the first one for more than 90% of its space, False otherwise.
+    """
+    
+    # Calculate the area of the intersection between the two bounding boxes
+    x_overlap = max(0, min(bbox2[2], bbox1[2]) - max(bbox1[0], bbox2[0]))
+    y_overlap = max(0, min(bbox2[3], bbox1[3]) - max(bbox1[1], bbox2[1]))
+    intersection_area = x_overlap * y_overlap
+
+    # Calculate the area of the first bounding box
+    bbox1_area = (bbox1[2] - bbox1[0]) * (bbox1[3] - bbox1[1])
+    # Calculate the area of the second bounding box
+    bbox2_area = (bbox2[2] - bbox2[0]) * (bbox2[3] - bbox2[1])
+    
+    # Check if the overlap is more than 90% of the second bounding box area
+    return intersection_area / bbox1_area > 0.9
+
+"""
+Segments the UI into its elements, selects 2*n of them, ensuring they arent included in each other,
+sorts them by size and returns everything. Raises ValueError if not enough elements can be found.
+"""
+def get_first_n_sorted_elements(image, image_json, n, clickable=True):
+    image = image.convert('RGBA')
+    image = image.resize((1440, 2560), Image.Resampling.LANCZOS)
+    
+    clickable_segments = get_all_bounding_boxes_with_clickable(image_json["activity"]["root"], clickable)
+    
+    # Filter out all 0x0 segments
+    clickable_segments = [box for box in clickable_segments if ((box[2]-box[0])*(box[3]-box[1])) > 0]
+
+    # Sort by size ascending
+    sorted_clickable_segments = sorted(clickable_segments, key=lambda box: (box[2]-box[0])*(box[3]-box[1]))
+
+    # Filter all elements out that 'cover' at least 80% of some other element (the smaller element is likely already part of the bigger one)
+    non_overlapping_elements = []
+    for bbox in sorted_clickable_segments:
+        if not non_overlapping_elements:
+            non_overlapping_elements.append(bbox)
+        else:
+            overlaps_prior_element = False
+            for elem in non_overlapping_elements:
+                if is_overlapping(elem,bbox):
+                    overlaps_prior_element = True
+            if not overlaps_prior_element:
+                non_overlapping_elements.append(bbox)
+                
+    # We can already stop here if we dont have enough elements
+    if len(non_overlapping_elements) < n:
+        raise ValueError 
+    
+    # Sort in reverse, largest element first
+    non_overlapping_elements_largest_first = sorted(non_overlapping_elements, key=lambda box: (box[2]-box[0])*(box[3]-box[1]), reverse=True)
+    
+    # Only Select first n
+    non_overlapping_elements_largest_first = non_overlapping_elements_largest_first[:n]
+
+    # Segment image into its components
+    segments = []
+    for bbox in non_overlapping_elements_largest_first:
+        segments.append(image.crop((bbox[0],bbox[1],bbox[2],bbox[3])))
+
+    # Create list of normalised coordinates
+    normalised_bboxes = []
+    for box in non_overlapping_elements_largest_first:
+        w,h = box[2]-box[0], box[3]-box[1]
+        normalised_bboxes.append([w/1440.0,h/2560.0])
+    
+    
+    return non_overlapping_elements_largest_first, normalised_bboxes, segments
+            
+    
+    
+
+
+    
 
 transform_t_to_pil = T.ToPILImage()
 transform_to_t = transforms.Compose([transforms.ToTensor()])
