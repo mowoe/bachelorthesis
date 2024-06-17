@@ -2,6 +2,8 @@ import numpy as np
 import torch
 from huggingface_hub import hf_hub_download
 import random
+import torchvision.transforms as T
+from torchvision import datasets, transforms
 
 # Utility functions to read dataset
 def get_all_bounding_boxes_and_ids(item):
@@ -154,3 +156,6 @@ def get_random_initial_position(segment, canvas_size, original_position, seed=1,
         [x_ratio, 0.0    , mapped_x_position],
         [0.0    , y_ratio, mapped_y_position]
     ])
+
+transform_t_to_pil = T.ToPILImage()
+transform_to_t = transforms.Compose([transforms.ToTensor()])
