@@ -2,7 +2,8 @@
 
 This repository holds the accompanying code for my (upcoming) bachelor thesis.
 
-The thesis can be divided into four distinct experiments which are all based on each other. Experiment 1 is seperate, all the other ones are divided into multiple notebooks, which all contain some documentation about what they do. Only the first experiment is explained in detail in this readme.
+> [!IMPORTANT]  
+> The thesis can be divided into four distinct experiments which are all based on each other. Experiment 1 is seperate, all the other ones are divided into multiple notebooks, which all contain some documentation about what they do. Only the first experiment is explained in detail in this readme.
 
 ## Experiment 1
 
