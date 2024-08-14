@@ -2,6 +2,10 @@
 
 This repository holds the accompanying code for my (upcoming) bachelor thesis.
 
+The thesis can be divided into four distinct experiments which are all based on each other. Experiment 1 is seperate, all the other ones are divided into multiple notebooks, which all contain some documentation about what they do. Only the first experiment is explained in detail in this readme.
+
+## Experiment 1
+
 The general idea is to use StableDiffusion Img2Img Metric based optimizations of screenshots of User Interfaces to increase perceived aesthetic.
 
 ### What has been done up to now
