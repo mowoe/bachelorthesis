@@ -133,9 +133,12 @@ class AestheticPredictor(torch.nn.Module):
         x = self.fc2(x)
         return x
 
+def map_to_range(num, x_ratio, t):
+    normalized_num = (num + (x_ratio - 1)) / ((2 * (x_ratio - 1))+0.00001)
+    mapped_num = normalized_num * t
+    return mapped_num
 
-
-def get_random_initial_position(segment, canvas_size, original_position, seed=1, verbose=0):
+def get_random_initial_position(segment, canvas_size, original_position, seed=1, verbose=0, return_coords=False):
     # random.seed(seed)
 
     
@@ -152,8 +155,16 @@ def get_random_initial_position(segment, canvas_size, original_position, seed=1,
             [x_ratio, 0.0    , mapped_x_position],
             [0.0    , y_ratio, mapped_y_position]
         ])}""")
+    if return_coords:
+        original_x_coordinate = map_to_range(mapped_x_position, x_ratio, canvas_size[0])
+        original_y_coordinate = map_to_range(mapped_y_position, y_ratio, canvas_size[1])
+        return [original_x_coordinate,original_y_coordinate] ,np.array([
+            [x_ratio, 0.0    , mapped_x_position],
+            [0.0    , y_ratio, mapped_y_position]
+        ])
+        
 
-    
+        
     return np.array([
         [x_ratio, 0.0    , mapped_x_position],
         [0.0    , y_ratio, mapped_y_position]
@@ -172,12 +183,12 @@ def get_all_clickable_resources(item, should_be_clickable):
                 all_boxes.append(box)
     return all_boxes
 
-def get_all_bounding_boxes_with_clickable(item, should_be_clickable):
+def get_all_bounding_boxes_with_clickable(item, should_be_clickable, exclude_navigation_bar=False):
     bboxes = get_all_clickable_resources(item,should_be_clickable)
     reduced_bboxes = []
     already_seen_ids = []
     for box,r_id in bboxes:
-        if r_id not in already_seen_ids:
+        if r_id not in already_seen_ids and (r_id != "android:id/navigationBarBackground" or not exclude_navigation_bar):
             reduced_bboxes.append(box)
             already_seen_ids.append(r_id)
     return reduced_bboxes
@@ -252,15 +263,71 @@ def get_first_n_sorted_elements(image, image_json, n, clickable=True):
         segments.append(image.crop((bbox[0],bbox[1],bbox[2],bbox[3])))
 
     # Create list of normalised coordinates
-    normalised_bboxes = []
+    normalised_positions = []
     for box in non_overlapping_elements_largest_first:
+        x,y = box[0], box[1]
         w,h = box[2]-box[0], box[3]-box[1]
-        normalised_bboxes.append([w/1440.0,h/2560.0])
+        normalised_positions.append([x/1440.0,y/2560.0,w/1440.0,h/2560.0])
     
+    return non_overlapping_elements_largest_first, normalised_positions, segments
+            
+
+"""
+Segments the UI into its elements, selects 2*n of them, ensuring they arent included in each other,
+sorts them by size and returns everything. Raises ValueError if not enough elements can be found.
+"""
+def get_first_n_sorted_elements_clickable_and_not_clickable(image, image_json, n):
+    image = image.convert('RGBA')
+    image = image.resize((1440, 2560), Image.Resampling.LANCZOS)
     
-    return non_overlapping_elements_largest_first, normalised_bboxes, segments
+    clickable_segments = get_all_bounding_boxes(image_json["activity"]["root"])
+    
+    # Filter out all 0x0 segments
+    clickable_segments = [box for box in clickable_segments if ((box[2]-box[0])*(box[3]-box[1])) > 0]
+
+    # Sort by size ascending
+    sorted_clickable_segments = sorted(clickable_segments, key=lambda box: (box[2]-box[0])*(box[3]-box[1]))
+
+    # Filter all elements out that 'cover' at least 80% of some other element (the smaller element is likely already part of the bigger one)
+    non_overlapping_elements = []
+    for bbox in sorted_clickable_segments:
+        if not non_overlapping_elements:
+            non_overlapping_elements.append(bbox)
+        else:
+            overlaps_prior_element = False
+            for elem in non_overlapping_elements:
+                if is_overlapping(elem,bbox):
+                    overlaps_prior_element = True
+            if not overlaps_prior_element:
+                non_overlapping_elements.append(bbox)
+                
+    # We can already stop here if we dont have enough elements
+    if len(non_overlapping_elements) < n:
+        raise ValueError 
+    
+    # Sort in reverse, largest element first
+    non_overlapping_elements_largest_first = sorted(non_overlapping_elements, key=lambda box: (box[2]-box[0])*(box[3]-box[1]), reverse=True)
+    
+    # Only Select first n
+    non_overlapping_elements_largest_first = non_overlapping_elements_largest_first[:n]
+
+    # Segment image into its components
+    segments = []
+    for bbox in non_overlapping_elements_largest_first:
+        segments.append(image.crop((bbox[0],bbox[1],bbox[2],bbox[3])))
+
+    # Create list of normalised coordinates
+    normalised_positions = []
+    for box in non_overlapping_elements_largest_first:
+        x,y = box[0], box[1]
+        w,h = box[2]-box[0], box[3]-box[1]
+        normalised_positions.append([x/1440.0,y/2560.0,w/1440.0,h/2560.0])
+    
+    return non_overlapping_elements_largest_first, normalised_positions, segments
             
     
+    
+
     
 
 
@@ -268,3 +335,95 @@ def get_first_n_sorted_elements(image, image_json, n, clickable=True):
 
 transform_t_to_pil = T.ToPILImage()
 transform_to_t = transforms.Compose([transforms.ToTensor()])
+
+
+def calculate_alignment(boxA, boxB):
+    leftern_most_distance = abs(boxA[0] - boxB[0])
+    rightern_most_distance = abs(boxA[2] - boxB[2])
+    center_most_distance = abs((boxA[2]+boxA[0])/2 - (boxB[2]+boxB[0])/2)
+
+    return min([leftern_most_distance, rightern_most_distance, center_most_distance])    
+    
+def average_pairwise_alignment(boxes):
+    n = len(boxes)
+    if n < 2:
+        return 0.0  # If there are less than 2 boxes, average IoU is not defined
+
+    alignment_sum = 0
+    pair_count = 0
+    
+    # Iterate over all unique pairs of boxes
+    for i in range(n):
+        for j in range(i + 1, n):
+            alignment = calculate_alignment(boxes[i], boxes[j])
+            alignment_sum += alignment
+            pair_count += 1
+
+    average_alignment = alignment_sum / pair_count if alignment_sum != 0 else 0.0
+    
+    return average_alignment
+
+
+
+def calculate_iou(boxA, boxB):
+    """
+    Calculate the Intersection over Union (IoU) of two bounding boxes.
+    
+    Parameters:
+    boxA (list): A list [x1, y1, x2, y2] representing the first bounding box.
+    boxB (list): A list [x1, y1, x2, y2] representing the second bounding box.
+    
+    Returns:
+    float: IoU value between 0 and 1.
+    """
+
+    # Determine the (x, y)-coordinates of the intersection rectangle
+    xA = max(boxA[0], boxB[0])
+    yA = max(boxA[1], boxB[1])
+    xB = min(boxA[2], boxB[2])
+    yB = min(boxA[3], boxB[3])
+
+    # Compute the area of intersection rectangle
+    interWidth = max(0, xB - xA)
+    interHeight = max(0, yB - yA)
+    interArea = interWidth * interHeight
+
+    # Compute the area of both the bounding boxes
+    boxAArea = (boxA[2] - boxA[0]) * (boxA[3] - boxA[1])
+    boxBArea = (boxB[2] - boxB[0]) * (boxB[3] - boxB[1])
+
+    # Compute the area of the union
+    unionArea = boxAArea + boxBArea - interArea
+
+    # Compute the IoU
+    iou = interArea / float(unionArea) if unionArea != 0 else 0
+    
+    return iou
+
+def average_pairwise_iou(boxes):
+    """
+    Calculate the average pairwise IoU for a list of bounding boxes.
+    
+    Parameters:
+    boxes (list of list): A list of bounding boxes, each represented as [x1, y1, x2, y2].
+    
+    Returns:
+    float: The average IoU for all unique pairs of bounding boxes.
+    """
+    n = len(boxes)
+    if n < 2:
+        return 0.0  # If there are less than 2 boxes, average IoU is not defined
+
+    iou_sum = 0
+    pair_count = 0
+    
+    # Iterate over all unique pairs of boxes
+    for i in range(n):
+        for j in range(i + 1, n):
+            iou = calculate_iou(boxes[i], boxes[j])
+            iou_sum += iou
+            pair_count += 1
+
+    average_iou = iou_sum / pair_count if pair_count != 0 else 0.0
+    
+    return average_iou
